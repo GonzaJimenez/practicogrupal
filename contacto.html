@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,12 +12,14 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/formulario.css">
     <!-- <link rel="stylesheet" href="css/lightDark.css"> -->
     <title>Sanus Vita</title>
     <script defer src="js/darkMode.js"></script>
     <script defer src="js/Navbar.js"></script>
     <script defer src="js/header.js"></script>
 </head>
+
 <body class="dark-theme">
     <header class="page-header header-basic is-sticky" id="page-header">
         <div class="container">
@@ -86,11 +89,72 @@
             </nav>
         </div>
     </header>
-    
+
     <main>
         <div class="portada">
             <img src="img/contacto.jpg" alt="imagen1" class="porta">
         </div>
+
+        <section class="form-gral">
+        <section class="form-contacto">
+            <h2>Contactate con nosotros</h2>
+            <form action="" target="_blank"></form>
+            <span class="form-consulta">                
+                <div>
+                    <label class="form-ingreso" for="firstname">Nombre: </label> <br> 
+                    <input class="controles" type="text" name="firstname" placeholder="Ingrese su nombre..."> 
+                </div>
+            </span>
+            <span class="form-consulta">
+                <div>
+                    <label class="form-ingreso" for="lastname">Apellido:</label> <br>
+                    <input class="controles" type="text" name="lastname" placeholder="Ingrese su apellido...">
+                </div>
+            </span>
+            <span class="form-consulta">
+                <div>
+                    <label class="form-ingreso" for="email">Email:</label> <br>
+                    <input class="controles" type="text" name="email" placeholder="Ingrese su correo electronico..."> 
+                </div>
+            </span>
+            <span class="form-consulta">
+                <div>
+                    <label class="form-ingreso" for="phone">Teléfono:</label> <br>
+                    <input class="controles" type="text" name="phone" placeholder="Ingrese su número telefónico..."> 
+                </div>
+            </span>
+            <span class="form-consulta" >
+                <div>
+                    <label class="form-ingreso" for="consulta">Consulta:</label> <br>
+                    <input class="controles" id="box" type="text" name="consulta">
+                </div>
+            </span>
+            <br>
+            <span class="form-consulta">
+                <input class="form-button" type="submit" value="Enviar">
+            </span>
+        </section>
+        
+        <section class="form-information">
+            <span class="form-help">
+                <img class="imagenchida" src="img/contacto.png" alt="">
+            </span>
+            <span class="form-help">
+                <p class="info-contacto">
+                    Teléfonos <br>
+                    +54 9 2956984563 / 456-9845
+                    <br><br>
+                    e-mail <br>
+                    info@sanusvita.com
+                    <br><br>
+                    Gimnasio central <br>
+                    PONER DIRECCIÓN DE UNA CALLE
+
+                </p>
+            </span>
+        </section>
+    </section>
     </main>
 </body>
+
 </html>
