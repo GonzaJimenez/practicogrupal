@@ -1,0 +1,55 @@
+.form-gral{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*Parte izquierda*/
+.form-contacto{    
+    width: 40%;
+}
+h2{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+.form-contacto .controles{
+    padding: 10px;
+    width: 300px;
+    border-radius: 2px;
+    font-size: 15px;
+}
+
+.form-contacto .form-consulta{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-consulta .form-ingreso{
+    font-size: 25px;
+}
+
+#box{
+    height: 200px;
+}
+
+.form-button{
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+}
+
+/*Parte derecha*/
+.form-information{
+    width: 60%;
+}
+
+.form-information .form-help{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.info-contacto{
+    font-size: 20px;
+}
