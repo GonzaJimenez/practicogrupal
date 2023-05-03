@@ -1,0 +1,158 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+*::selection {
+  background: var(--clr-main);
+  color: var(--clr-white);
+}
+
+:root {
+    --clr-main: #303030;
+    --clr-secondary: #231F4D;
+    --clr-accent: #DF2467;
+    --clr-white: #CFCFCF;
+    --clr-black: #121212;
+    --clr-grey: #f1f1f1;
+    --clr-semi-dark: #b8b8b8;
+    --clr-dark-grey: #4d4d4d;
+    --clr-extra-dark-grey: #202020;
+    --clr-dark-blue: #060922;
+    --clr-semi-dark-blue: #000531;
+    --ltr-main-font-f: "Jost", "sans-serif";
+    --rtl-main-font-f: "Tajawal", "sans-serif";
+
+    --swiper-navigation-size: 44px;
+    --swiper-theme-color: #007aff;
+    --animate-duration: 1s;
+    --animate-delay: 1s;
+    --animate-repeat: 1;
+}
+
+body {
+  font-family: var(--ltr-main-font-f);
+  direction: ltr;
+  text-align: left;
+  position: relative;
+  /* color: var(--clr-accent); */
+  background: var(--clr-white);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  transition: all 0.25s ease-in-out 0s;
+}
+
+div{
+  display: block;
+}
+
+li{
+    list-style:none
+}
+
+ul{
+  margin:0;
+  padding:0;
+}
+header{
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+ul{
+  display: block;
+  list-style: disc;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  padding-left: 2rem;
+}
+
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+  color: var(--clr-accent);
+}
+
+/*TODAS LAS PORTADAS DE LA PÁGINA*/
+.portada .porta{
+  min-width: 50%;
+  max-width: 100%;
+}
+
+/*Area de presentación*/
+.presentacion{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.presentacion .descripcion{
+  width: 60%;
+}
+
+/*Area de actividades*/
+.actividades{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actividades .actividad{
+  padding: 10px;
+  /* width: 60px; */
+}
+
+.actividad .disciplina{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.actividad .fotoact{
+  width: 100%;
+}
+
+
+/*Nosotros*/
+/* ¿Quienes somos? */
+
+.about-gral{
+  border-bottom:#303030 1px outset;
+}
+.about h2{
+  display: flex;
+  justify-content: center;
+}
+.about span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.fundamentos{
+  height: 300px;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: #303030 1px outset;
+}
+.fundamentos .fundamento{
+  padding:10px;
+}
+#unicofundamento{
+  border-left: #303030 1px outset;
+  border-right: #303030 1px outset;;
+}

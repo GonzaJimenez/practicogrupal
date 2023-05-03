@@ -1,0 +1,130 @@
+footer {
+    display: flex;
+    align-items: center; 
+    gap: 40px;
+    margin: 0 30px;
+    color: #a2b5cd;
+    background-color: var(--clr-main);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0; 
+    /* justify-content: space-around; */
+    justify-content: flex-start;
+}
+.row{
+    display: flex;
+    align-content: space-around;
+    margin: 0 25% 0 25%;
+}
+.col3{
+    float: center;
+    flex: 1;
+    padding: 10px;
+}  
+
+
+footer.top {
+    border-bottom: 2px solid var(--clr-accent);
+    padding-bottom: 200px; 
+}
+
+footer.top.links, footer.top.logo {
+    width: 100%;
+    margin: 0;
+}
+
+
+footer img {
+    display: block;
+    max-width: 7rem;
+    max-height: calc(90px - 10px);
+    transition: all 0.5s ease-in-out 0s;
+}
+
+footer.top.links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;    
+}
+
+footer.bottom {
+    padding: 20px 0;
+    justify-content: space-between;
+}
+
+footer.links>div {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+footer h2 {
+    margin: 0;
+    /* font-size: 1.5rem; */
+    font-size: 16px;
+    font-weight: 400;
+    color: #f7f7f7;
+}
+
+footer.legal {
+    font-size: 12px;
+}
+
+footer.legal>a {
+    margin: 0 4px;
+}
+
+footer.legal>span {
+    margin-right: 10px;
+}
+
+footer.bottom.links {
+    display: flex;
+    gap: 10px;
+}
+
+footer.bottom.links>a {
+    font-size: 24px;
+}
+
+@media (width >= 620px) {
+    footer {
+        margin: 0 auto;
+        /* max-width: 600px; */
+        padding: 0;
+        align-items: center;
+    }
+}
+@media (width < 620px) {
+    footer {
+        flex-direction: column;
+        /* align-items: center;
+        text-align: center; */
+    }
+    footer .bottom {
+        gap: 16px;
+        flex-direction: column-reverse;
+    }
+}
+
+@media (width < 420px) {
+    footer {
+        text-align: center;
+        align-items: center;
+    }
+    footer .top .links {
+        grid-template-columns: 1fr;
+    }
+    footer .bottom {
+        align-items: center;
+    }
+    footer .legal > span {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 2px;
+    }
+
+}
+
+
