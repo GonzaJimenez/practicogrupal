@@ -8,10 +8,10 @@
 }
 
 :root {
-    --clr-main: #303030;
+    --clr-main: #CFCFCF;
     --clr-secondary: #231F4D;
-    --clr-accent: #DF2467;
-    --clr-white: #CFCFCF;
+    --clr-accent: #007aff;
+    --clr-white: #f1f1f1;
     --clr-black: #121212;
     --clr-grey: #f1f1f1;
     --clr-semi-dark: #b8b8b8;
@@ -34,11 +34,10 @@ body {
   direction: ltr;
   text-align: left;
   position: relative;
-  /* color: var(--clr-accent); */
-  background: var(--clr-white);
   overflow-x: hidden;
   scroll-behavior: smooth;
   transition: all 0.25s ease-in-out 0s;
+  background-color: var(--clr-white);
 }
 
 div{
@@ -74,8 +73,6 @@ ul{
   padding-left: 2rem;
 }
 
-
-
 a {
   text-decoration: none;
   color: inherit;
@@ -83,6 +80,10 @@ a {
 a:hover {
   text-decoration: none;
   color: var(--clr-accent);
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  color: var(--clr-dark-blue);
 }
 
 /*TODAS LAS PORTADAS DE LA PÁGINA*/
