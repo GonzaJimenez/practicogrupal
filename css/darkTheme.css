@@ -1,7 +1,7 @@
 body.dark-theme {
   color: var(--clr-white);
   background: var(--clr-dark-blue);
-  /* about section */
+
 }
 
 body.dark-theme .header-basic .header-logo .logo-img.light-logo {
@@ -124,4 +124,4 @@ body.dark-theme .about .stats-counter.stats-cards .stat-box {
   display: flex;
   font-size: 1.25rem;
   padding: 0 0.5rem;
-}
+} 
