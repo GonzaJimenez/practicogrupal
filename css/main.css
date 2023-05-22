@@ -37,7 +37,7 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   transition: all 0.25s ease-in-out 0s;
-  background: var(--clr-white);
+  background-color: var(--clr-white);
 }
 
 div{
@@ -72,8 +72,6 @@ ul{
   padding-inline-start: 40px;
   padding-left: 2rem;
 }
-
-
 
 a {
   text-decoration: none;
