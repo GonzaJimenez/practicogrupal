@@ -13,21 +13,22 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
-    <!-- <link rel="stylesheet" href="css/lightDark.css"> -->
+    <link rel="stylesheet" href="css/lightDark.css">
     <title>Sanus Vita</title>
     <script defer src="js/darkMode.js"></script>
-    <script defer src="js/Navbar.js"></script>
+    <!-- <script defer src="js/Navbar.js"></script> -->
     <script defer src="js/header.js"></script>
 </head>
 
-<body class="dark-theme">
+<body>
     <header class="" id="page-header">
         <div class="h-container">
             <div class="logo">
-                <a href="/" class=""> <img src="img/sanusvita.png" alt="logo" class=""></a>
+                <a href="/" class="light-logo"> <img src="img/LOGO1.png" alt="logo" class=""></a>
+                <a href="/" class="dark-logo"> <img src="img/LOGO2.png" alt="logo" class=""></a>
             </div>
             <nav class="nav-menu">
-                <ul class="menu">
+                <ul class="menu" id="menu">
                     <li class="menu-item">
                         <a class="menu-link" href="#">Inicio
                         </a>
@@ -67,8 +68,8 @@
                     </li>
                 </ul>
             </nav>
-            <div class="mode-switcher">
-                <div class="switch-inner go-light" tittle="Switch to Light Mode">
+            <div class="mode-switcher" id="theme-toggle">
+                <button class="dark-mode-btn switch-inner go-light" tittle="Switch to Light Mode">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-sun">
@@ -82,23 +83,22 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </div>
-                <div class="switch-inner go-dark" tittle="Switch to Dark Mode">
+                </button>
+                <button class="light-mode-btn switch-inner go-dark" tittle="Switch to Dark Mode">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-moon">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                </div>
+                </button>
             </div>
             <div class="controls-box">
-                <div class="control menu-toggler">
-                    <span class="line1"></span>
-                    <span class="line2"></span>
-                    <span class="line3"></span>
+                <div class="hamburger">
+                    <div class="_layer -top"></div>
+                    <div class="_layer -mid"></div>
+                    <div class="_layer -bottom"></div>
                 </div>
             </div>
-        </div>
     </header>
 
     <main>
@@ -107,7 +107,8 @@
         </div>
 
         <section class="presentacion">
-            <img src="img/logoLight.png" alt="" class="logopresen">
+            <img src="img/LOGO2.png" alt="logo" class="dark-logo">
+            <img src="img/LOGO1.png" alt="" class="logopresen light-logo">
             <div>
                 <h2>Sanus Vita</h2>
                 <p class="descripcion">
