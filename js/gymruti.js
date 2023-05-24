@@ -1,6 +1,6 @@
 const templates ={
     espalda:`
-    <section>
+        <div id="espalda" class="active">
             <h1>¿Por qué es importante ejercitar la espalda?</h1>
             <p>
                 Fortalecer la espalda para un buen rendimiento y evitar lesiones es fundamental. Este es uno de los
@@ -44,7 +44,7 @@ const templates ={
                         allowfullscreen></iframe>
                 </li>
             </ul>
-        </section>`,
+        </div>`,
         pecho: `
             <div id="pecho" class="container active">
                 <h1>Pechovich</h1>

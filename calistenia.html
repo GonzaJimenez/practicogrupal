@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -51,9 +51,6 @@
                             <li class="menu-item sub-menu-item">
                                 <a class="menu-link sub-menu-link" href="calistenia.html">Calistenia</a>
                             </li>
-                            <li class="menu-item sub-menu-item">
-                                <a class="menu-link sub-menu-link" href="powerlifting.html">PowerLifting</a>
-                            </li>
                         </ul>
                     </li>
 
@@ -102,11 +99,49 @@
             </div>
     </header>
 
-    <main>
+    <main id="app">
         <div class="portada">
             <img src="img/calistenia.jpg" alt="imagen1" class="img-cover">
         </div>
+
+        <section class="disciplinas">
+            <div>
+                <h1>Rutina de Calistenia:</h1>
+            </div>
+            <div class="actividades">
+                <article class="actividad">
+                    <a @click="view = 'principiante' ">
+                        <h2 class="disciplina" class="disciplina">Principiantes</h2><img src="img/calistenia-principiante.jpg" alt=""
+                            class="img-ejercicio">
+                    </a>
+                </article>
+                <article class="actividad">
+                    <a @click="view = 'intermedio' ">
+                        <h2 class="disciplina" class="disciplina">Intermedio</h2><img src="img/calistenia-intermedio.jpg" alt=""
+                            class="img-ejercicio">
+                    </a>
+                </article>
+                <article class="actividad">
+                    <a @click="view = 'avanzado' ">
+                        <h2 class="disciplina" class="disciplina">Avanzado</h2><img src="img/calistenia-avanzado.jpg" alt=""
+                            class="img-ejercicio">
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <component :is="view"></component>
+            </div>
+        </section>
+
+
     </main>
+
+    <!-- Vue -->
+    <script src="js/vue.js"></script>
+    <script src="js/calisruti.js"></script>
 
     <footer>
         <div class="divider">
@@ -117,7 +152,6 @@
             <li><a href="gimnasio.html" class="f-link">Gimnasio</a></li>
             <li><a href="funcional.html" class="f-link">Funcional</a></li>
             <li><a href="calistenia.html" class="f-link">Calistenia</a></li>
-            <li><a href="powerlifting.html" class="f-link">PowerLifting</a></li>
         </ul>
         <ul class="f-section adopt-list">
             <li><p>Entrena con nosotros!</p></li>
