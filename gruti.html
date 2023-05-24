@@ -90,66 +90,99 @@
         </div>
     </header>
 
-    <main id="app">
+    <main>
+        <br><br><br><br>
         <div class="portada">
-            <img src="img/gimnasio.jpg" alt="imagen1" class="img-cover">
+            <!-- <img src="img/gimnasio.jpg" alt="imagen1" class="img-cover"> -->
         </div>
 
-        <section class="disciplinas">
+        <!-- <section>
+            <h1>¿Por qué es importante ejercitar la espalda?</h1>
+            <p>
+                Fortalecer la espalda para un buen rendimiento y evitar lesiones es fundamental. Este es uno de los
+                grupos musculares más grandes y sobre el mismo recae parte de la actividad, tanto diaria como deportiva.
+            </p>
+            <h3>Por este motivo de te dejamos una rutina para que entrenes esa espaldota carnal.</h3>
+            <ul>
+                <li>
+                    <h4>Peso muerto x 10,8 1B. Dominada a la barbilla con peso x 4RM, 8RM.</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/WV06PfRAXUk"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </li>
+                <li>
+                    <h4>Remo muerto con barra (12RM) - 2-3 x 8-10 .</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/qsbJcaAneaw"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </li>
+                <li>
+                    <h4>Remo alto de cable con un brazo alternado O Jalón hacia abajo balanceando - 2-3 x 10-12.</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/WczI8ugTPl8"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </li>
+                <li>
+                    <h4>Híper Y/W Combo - 2 x 14-20 (alterna Y/W en cada repetición) .</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/uzveWBGBTWQ"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </li>
+                <li>
+                    <h4>Encogimiento con barra escalonado - 1 x F.</h4>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/82b2wTNA9PM"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </li>
+            </ul>
+        </section> -->
+
+        <section>
             <div>
-                <h1>Rutina de hipertrofia - Volumen:</h1>
+                <h2 class="act-titulo">Si te interesa saber más sobre nuestras rutinas para cada actividad, a
+                    continuación nuestras disciplinas... </h2>
             </div>
             <div class="actividades">
                 <article class="actividad">
-                    <a @click="view = 'espalda' ">
-                        <h2 class="disciplina" class="disciplina">Espaldovich</h2><img src="img/espalda.jpg" alt=""
-                            class="img-ejercicio">
+                    <a href="gimnasio.html">
+                        <!-- <img src="img/gimnasio.png" alt="" class="img-actividad"> -->
+                        <span class="sp-actividad">
+                            <h3 class="alter-disciplina">Gimnasio</h3>
+                        </span>
                     </a>
                 </article>
                 <article class="actividad">
-                    <a @click="view = 'pecho' ">
-                        <h2 class="disciplina" class="disciplina">Pechardo</h2><img src="img/press-de-banco-plano.jpg" alt=""
-                            class="img-ejercicio">
+                    <a href="funcional.html">
+                        <!-- <img src="img/funcional.png" alt="" class="img-actividad"> -->
+                        <span class="sp-actividad">
+                            <h3 class="alter-disciplina">Funcional</h3>
+                        </span>
                     </a>
                 </article>
                 <article class="actividad">
-                    <a @click="view = 'piernas' ">
-                        <h2 class="disciplina" class="disciplina">Piernovich</h2><img src="img/espalda.jpg" alt=""
-                            class="img-ejercicio">
+                    <a href="calistenia.html">
+                        <!-- <img src="img/calistenia.png" alt="" class="img-actividad"> -->
+                        <span class="sp-actividad">
+                            <h3 class="alter-disciplina">Calistenia</h3>
+                        </span>
                     </a>
                 </article>
                 <article class="actividad">
-                    <a @click="view = 'biceps' ">
-                        <h2 class="disciplina" class="disciplina">Biceps</h2><img src="img/espalda.jpg" alt=""
-                            class="img-ejercicio">
+                    <a href="powerlifting.html">
+                        <!-- <img src="img/powerlifting.png" alt="" class="img-actividad"> -->
+                        <span class="sp-actividad">
+                            <h3 class="alter-disciplina">Powerlifting</h3>
+                        </span>
                     </a>
                 </article>
-                <article class="actividad">
-                    <a @click="view = 'triceps' ">
-                        <h2 class="disciplina" class="disciplina">Triceps</h2><img src="img/espalda.jpg" alt=""
-                            class="img-ejercicio">
-                    </a>
-                </article>
-
-
-            </div>
-
-
-        </section>
-
-        <section>
-            <div class="container">
-                <component :is="view"></component>
             </div>
         </section>
-
-
     </main>
-
-    <!-- Probando vue -->
-    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
-    <script src="js/vue.js"></script>
-    <script src="js/gymruti.js"></script>
 </body>
 
 </html>
