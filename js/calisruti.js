@@ -11,8 +11,10 @@ const templates = {
             <h3>Pero antes debes conocer unos ejercicios claves.</h3>
             <ul v-for="ejercicio in ejercicios">
                 <li>
+                    <div class="ejercicios-claves">
                     <p><b>{{ejercicio.nombre}}</b>: {{ejercicio.descripcion}}</p>
-                    <img v-bind:src="ejercicio.foto">
+                    <img v-bind:src="ejercicio.foto" class="calistenia-imagen">
+                    </div>
                 </li>
             </ul>
             <h3>Ahora que ya conocemos los ejercicios básicos podemos comenzar con nuestra rutina</h3>
@@ -22,10 +24,12 @@ const templates = {
                     <p><b>{{calentamiento.ejercicio}}</b></p>            
                 </li>
             </ul>
-            <h4>Rutina</h4>
+            <h1 class="titulo">Rutina</h1>
             <ul v-for="rutinap in rutinasp">
                 <li>
-                    <p><b>{{rutinap.nombre}}</b></p>                    
+                    <div>
+                    <p class="nombre ejercicio"><b>{{rutinap.nombre}}</b></p>                    
+                    </div>
                 </li>
             </ul>
             </div>`,
@@ -111,13 +115,13 @@ var app = new Vue({
                     }
                     ],
                     rutinasp: [{
-                        nombre: "3 Dominadas supinas."
+                        nombre: "3 Dominadas supinas.",
                     },
                     {
-                        nombre: "30 Segundos de Wall Sit."
+                        nombre: "30 Segundos de Wall Sit.",                        
                     },
                     {
-                        nombre: "12 Fondos de silla /banco."
+                        nombre: "12 Fondos de silla/banco.",
                     },
                     {
                         nombre: "8 Flexiones"
