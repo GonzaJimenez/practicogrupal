@@ -1,112 +1,24 @@
-body.dark-theme .dark-logo {
-  display: none;
-}
+.dark-theme {
+  --clr-main: #303030;
+  --clr-accent: #DF2467;
+  --clr-dark-blue: var(--clr-white);
+  --clr-dark-grey: var(--clr-semi-dark);
+  background-color: var(--clr-extra-dark-grey);
 
-
-.light-logo {
+   
+  .light-logo {
     display: none;
-}
-.dark-logo {
+  }
+  
+  .dark-logo {
     display: block;
-}
-.mode-switcher {
-    position: relative;
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out 0s;
-}
-.mode-switcher.dark-theme {
-    background-color: var(--clr-white);
-}
-.mode-switcher.dark-theme .icon {
-    color: var(--clr-dark-blue);
-}
-.mode-switcher.dark-theme .go-light {
-    visibility: visible;
-    opacity: 1;
-}
-.mode-switcher.dark-theme .go-dark {
-    visibility: hidden;
-    opacity: 1;
-}
-.mode-switcher.light-theme {
-    background-color: var(--clr-dark-blue);
-}
-.mode-switcher.light-theme .icon {
-    color: var(--clr-white);
-}
-.mode-switcher.light-theme .go-light {
-    visibility: hidden;
-    opacity: 0;
-}
-.mode-switcher.light-theme .go-dark {
-    visibility: visible;
-    opacity: 1;
-}
-.mode-switcher .switch-inner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    visibility: visible;
-    opacity: 1;
-}
-.mode-switcher .icon {
-    display: flex;
-    font-size: 1.25rem;
-    padding: 0 0.5rem;
-}
+  }
 
+  .go-dark {
+    display: none;
+  }
 
-
-.mode-switcher {
-    position: relative;
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out 0s;
+  .go-light {
+    display: block;
   }
-  .mode-switcher.dark-theme {
-    background-color: var(--clr-white);
-  }
-  .mode-switcher.dark-theme svg {
-    color: var(--clr-dark-blue);
-  }
-  .mode-switcher.dark-theme .go-light {
-    visibility: visible;
-    opacity: 1;
-  }
-  .mode-switcher.dark-theme .go-dark {
-    visibility: hidden;
-    opacity: 1;
-  }
-  .mode-switcher.light-theme {
-    background-color: var(--clr-dark-blue);
-  }
-  .mode-switcher.light-theme svg {
-    color: var(--clr-white);
-  }
-  .mode-switcher.light-theme .go-light {
-    visibility: hidden;
-    opacity: 0;
-  }
-  .mode-switcher.light-theme .go-dark {
-    visibility: visible;
-    opacity: 1;
-  }
-  .mode-switcher .switch-inner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    visibility: visible;
-    opacity: 1;
-  }
-  .mode-switcher svg {
-    display: flex;
-    font-size: 1.25rem;
-    padding: 0 0.5rem;
-  }
+}
