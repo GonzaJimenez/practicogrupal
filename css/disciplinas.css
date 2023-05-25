@@ -1,32 +1,39 @@
-.ejercicios-claves{
+.ejercicios-claves {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.fullbody-gral{
-display: flex;
-align-items: center;
-justify-content: center;
+
+.fullbody-gral {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.rutina-ejercicios{
+.rutina-ejercicios {
     display: flex;
     width: 50%;
 }
+
 /* Imágenes de calistenia */
-.calistenia-imagen{
+.calistenia-imagen {
     width: 30%;
-    padding:10px;
+    padding: 10px;
     /* display: flex;
     align-items: center;
     justify-content: center; */
 }
 
-.ejercicios-funcional{
+.ejercicios-funcional {
     width: 250px;
     padding: 5px;
 }
 
-.fotos-ejercicios{
-    width:50%;
+.fotos-ejercicios {
+    width: 50%;
+}
+
+.gim-imagen {
+    width: 30%;
+    padding: 10px;
 }
