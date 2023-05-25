@@ -1,0 +1,32 @@
+.ejercicios-claves{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fullbody-gral{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.rutina-ejercicios{
+    display: flex;
+    width: 50%;
+}
+/* Imágenes de calistenia */
+.calistenia-imagen{
+    width: 30%;
+    padding:10px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.ejercicios-funcional{
+    width: 250px;
+    padding: 5px;
+}
+
+.fotos-ejercicios{
+    width:50%;
+}
