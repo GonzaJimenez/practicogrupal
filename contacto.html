@@ -108,39 +108,40 @@
         <section class="form-gral">
             <section class="form-contacto">
                 <h2>Contactate con nosotros</h2>
-                <form action="">
+                <form id="form" action="https://formspree.io/f/mbjeeaak"
+                method="POST">
                     <div class="form-consulta">
-                        <input type="text" required>
+                        <input type="text" name="name" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Nombre</label>
                     </div>
                     <div class="form-consulta">
-                        <input type="text" required>
+                        <input type="text" name="lastname" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Apellido</label>
                     </div>
                     <div class="form-consulta">
-                        <input type="email" required>
+                        <input type="email" name="email" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Email</label>
                     </div>
                     <div class="form-consulta">
-                        <input type="number" required>
+                        <input type="number" name="number" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Telefono</label>
                     </div>
                     <div class="form-consulta">
-                        <textarea cols="20" rows="10" minlength="1" required></textarea>
+                        <textarea cols="20" rows="10" minlength="1" name="message" required></textarea>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Consulta</label>
                     </div>
                     <span class="form-consulta">
-                        <input class="form-button" type="submit" value="Enviar">
+                        <input class="form-button" id="my-form-button" type="submit" value="Enviar">
                     </span>
                 </form>
             </section>
@@ -249,6 +250,7 @@
             <a href="">Terminos y condiciones</a>
         </div>
     </footer>
+    <script src="js/form.js"></script>
 </body>
 
 </html>
