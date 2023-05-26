@@ -108,42 +108,41 @@
         <section class="form-gral">
             <section class="form-contacto">
                 <h2>Contactate con nosotros</h2>
-                <form action="" target="_blank"></form>
-                <span class="form-consulta">
-                    <div>
-                        <label class="form-ingreso" for="firstname">Nombre: </label> <br>
-                        <input class="controles" type="text" name="firstname" placeholder="Ingrese su nombre...">
+                <form action="">
+                    <div class="form-consulta">
+                        <input type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Nombre</label>
                     </div>
-                </span>
-                <span class="form-consulta">
-                    <div>
-                        <label class="form-ingreso" for="lastname">Apellido:</label> <br>
-                        <input class="controles" type="text" name="lastname" placeholder="Ingrese su apellido...">
+                    <div class="form-consulta">
+                        <input type="text" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Apellido</label>
                     </div>
-                </span>
-                <span class="form-consulta">
-                    <div>
-                        <label class="form-ingreso" for="email">Email:</label> <br>
-                        <input class="controles" type="text" name="email"
-                            placeholder="Ingrese su correo electronico...">
+                    <div class="form-consulta">
+                        <input type="email" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Email</label>
                     </div>
-                </span>
-                <span class="form-consulta">
-                    <div>
-                        <label class="form-ingreso" for="phone">Teléfono:</label> <br>
-                        <input class="controles" type="text" name="phone" placeholder="Ingrese su número telefónico...">
+                    <div class="form-consulta">
+                        <input type="number" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Telefono</label>
                     </div>
-                </span>
-                <span class="form-consulta">
-                    <div>
-                        <label class="form-ingreso" for="consulta">Consulta:</label> <br>
-                        <input class="controles" id="box" type="text" name="consulta">
+                    <div class="form-consulta">
+                        <textarea cols="20" rows="10" minlength="1" required></textarea>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Consulta</label>
                     </div>
-                </span>
-                <br>
-                <span class="form-consulta">
-                    <input class="form-button" type="submit" value="Enviar">
-                </span>
+                    <span class="form-consulta">
+                        <input class="form-button" type="submit" value="Enviar">
+                    </span>
+                </form>
             </section>
 
             <section class="form-information">
@@ -152,13 +151,13 @@
                 </span>
                 <span class="form-help">
                     <p class="info-contacto">
-                        Teléfonos <br>
+                        TELÉFONOS <br>
                         +54 9 2956984563 / 456-9845
                         <br><br>
-                        e-mail <br>
+                        E-MAIL <br>
                         info@sanusvita.com
                         <br><br>
-                        Gimnasio central <br>
+                        GIMNASIO CENTRAL <br>
                         Guatemala 4641
 
                     </p>
@@ -172,13 +171,17 @@
             <div class="logo"></div>
         </div>
         <ul class="f-section d-list">
-            <li><p>Nuestras disciplinas</p></li>
+            <li>
+                <p>Nuestras disciplinas</p>
+            </li>
             <li><a href="gimnasio.html" class="f-link">Gimnasio</a></li>
             <li><a href="funcional.html" class="f-link">Funcional</a></li>
             <li><a href="calistenia.html" class="f-link">Calistenia</a></li>
         </ul>
         <ul class="f-section adopt-list">
-            <li><p>Entrena con nosotros!</p></li>
+            <li>
+                <p>Entrena con nosotros!</p>
+            </li>
             <li><a href="nosotros.html" class="f-link">Sobre nosotros</a></li>
             <li><a href="contacto.html" class="f-link">Contacto</a></li>
         </ul>
@@ -197,21 +200,21 @@
             </div>
         </div>
         <ul class="f-section social-media">
-            <li><p>Seguinos:</p></li>
+            <li>
+                <p>Seguinos:</p>
+            </li>
             <li><a href="">
                     <svg class="icon-social-facebook" xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-brand-facebook" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
+                        class="icon icon-tabler icon-tabler-brand-facebook" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
                     </svg>
                 </a>
             </li>
             <li><a href=""><svg class="icon-social-instagram" xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-brand-instagram" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
+                        class="icon icon-tabler icon-tabler-brand-instagram" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path>
                         <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
@@ -220,9 +223,8 @@
             <li>
                 <a href="">
                     <svg class="icon-social-twitter" xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-brand-twitter" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
+                        class="icon icon-tabler icon-tabler-brand-twitter" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path
                             d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c0 -.249 1.51 -2.772 1.818 -4.013z">
@@ -233,9 +235,8 @@
             <li>
                 <a href="">
                     <svg class="icon-social-youtube" xmlns="http://www.w3.org/2000/svg"
-                        class="icon icon-tabler icon-tabler-brand-youtube" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                        stroke-linejoin="round">
+                        class="icon icon-tabler icon-tabler-brand-youtube" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M3 5m0 4a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"></path>
                         <path d="M10 9l5 3l-5 3z"></path>

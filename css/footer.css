@@ -38,9 +38,11 @@ footer ul a {
 }
 .adopt-list{
     grid-area: adopt;
+    padding: 1rem 0;
 }
 .subscription{
     grid-area: subscribe;
+    padding-bottom: 1rem;
 }
 .social-media{
     grid-area: social;
@@ -56,6 +58,10 @@ footer ul a {
 .well-cta--form__text{
     margin-bottom: 10px;
 }
+.subscription p, .subscription h3{
+    color: var(--clr-perma-w);
+}
+
 .well-cta--cta{
     font-size: 18px;
 }

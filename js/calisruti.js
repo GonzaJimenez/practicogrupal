@@ -9,8 +9,8 @@ const templates = {
                 <br>
             </p>
             <h3>Pero antes debes conocer unos ejercicios claves.</h3>
-            <ul v-for="ejercicio in ejercicios">
-                <li>
+            <ul>
+                <li v-for="ejercicio in ejercicios">
                     <div class="ejercicios-claves">
                     <p><b>{{ejercicio.nombre}}</b>: {{ejercicio.descripcion}}</p>
                     <img v-bind:src="ejercicio.foto" class="calistenia-imagen">
@@ -19,14 +19,14 @@ const templates = {
             </ul>
             <h3>Ahora que ya conocemos los ejercicios básicos podemos comenzar con nuestra rutina</h3>
             <h4> Es importante realizar un calentamiento antes de empezar:</h4>
-            <ul v-for="calentamiento in calentamientos">
-                <li>
+            <ul>
+                <li v-for="calentamiento in calentamientos">
                     <p><b>{{calentamiento.ejercicio}}</b></p>            
                 </li>
             </ul>
             <h1 class="titulo">Rutina</h1>
-            <ul v-for="rutinap in rutinasp">
-                <li>
+            <ul>
+                <li v-for="rutinap in rutinasp">
                     <div>
                     <p class="nombre ejercicio"><b>{{rutinap.nombre}}</b></p>                    
                     </div>
@@ -42,8 +42,8 @@ const templates = {
                 Utilizamos nuestro peso corporal dando un equilibrio a nuestra ejercitación.
             </p>
             <h4>Rutina</h4>
-            <ul v-for="rutinai in rutinasi">
-                <li>
+            <ul>
+                <li v-for="rutinai in rutinasi">
                     <p><b>{{rutinai.nombre}}</b></p>            
                 </li>
             </ul>
@@ -58,8 +58,8 @@ const templates = {
                     en cuanto a resultados.
                 </p>
                 <h4>Rutina</h4>
-                <ul v-for="rutinaa in rutinasa">
-                <li>
+                <ul>
+                <li v-for="rutinaa in rutinasa">
                     <p><b>{{rutinaa.nombre}}</b></p>            
                 </li>
                 </ul>
