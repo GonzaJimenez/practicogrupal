@@ -23,17 +23,10 @@ header {
   grid-column: 1;
 }
 
-.logo img {
+.logo svg {
   max-height: 30px;
+  width: auto;
   fill: currentColor;
-}
-
-.light-logo {
-  display: block;
-}
-
-.dark-logo {
-  display: none;
 }
 
 /* Menu */
@@ -318,6 +311,7 @@ header {
   .logo {
       display: block;
       grid-column: 1 / span 4;
+      width: 100%;
   }
 
   .nav-menu {

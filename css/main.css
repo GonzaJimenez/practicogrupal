@@ -82,6 +82,14 @@ h1, h2, h3, h4, h5, h6, p {
   color: var(--clr-dark-blue);
 }
 
+.logo0 {
+  fill: #232536;
+}
+
+.logo1 {
+  fill: #565656;
+}
+
 /*TODAS LAS PORTADAS DE LA PÁGINA*/
 .portada .img-cover{
   width: 100%;

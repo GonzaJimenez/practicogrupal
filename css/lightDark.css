@@ -5,20 +5,12 @@
   --clr-dark-grey: var(--clr-semi-dark);
   background-color: var(--clr-extra-dark-grey);
 
-   
-  .light-logo {
-    display: none;
-  }
-  
-  .dark-logo {
-    display: block;
+  .logo0 {
+    fill: #DCDAC9;
   }
 
-  .go-dark {
-    display: none;
+  .logo1 {
+    fill: #ABABAB;
   }
 
-  .go-light {
-    display: block;
-  }
 }
