@@ -115,7 +115,7 @@ time {
 
 @media screen and (max-width: 600px) {
     .historia ul li {
-        margin-left: 20px;
+        margin-left: -20px;
     }
 
     .historia ul li div {
