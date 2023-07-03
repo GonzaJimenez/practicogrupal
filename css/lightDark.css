@@ -14,4 +14,19 @@
     fill: #ABABAB;
   }
 
+  .light-logo {
+    display: none;
+  }
+  
+  .dark-logo {
+    display: block;
+  }
+
+  .go-dark {
+    display: none;
+  }
+
+  .go-light {
+    display: block;
+  }
 }
