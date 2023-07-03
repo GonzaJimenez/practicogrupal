@@ -3,6 +3,7 @@
   --clr-accent: #DF2467;
   --clr-dark-blue: var(--clr-white);
   --clr-dark-grey: var(--clr-semi-dark);
+  --clr-accent-hover: #df24652a;
   background-color: var(--clr-extra-dark-grey);
 
   .logo0 {

@@ -174,4 +174,7 @@ a.button {
     .d-list {
         padding-top: 0.5rem;
     }
+    .subscription h3{
+        margin: 0;
+    }
 }

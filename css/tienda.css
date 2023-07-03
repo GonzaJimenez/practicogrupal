@@ -5,17 +5,30 @@ main {
 section {
     padding: 0;
 }
-
+.wrapper {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .card {
     border: 2px solid var(--clr-accent);
     border-radius: 1rem;
-    width: 25rem;
-    z-index: 10;
+    width: 30%;
+    transition: .5s ease-in-out;
 }
+
+.card:hover, .card:focus {
+    transform: scale3d(1.006, 1.006, 1);
+    transition: 2s cubic-bezier(.165, .84, .44, 1);
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+    box-shadow: 0 8px 17px 0 var(--clr-accent-hover), 0 6px 20px 0 var(--clr-accent-hover);
+}
+
 .card img{
-        object-fit: contain;
+        object-fit: cover;
         position: relative;
-        width: 24.8rem;
+        width: -webkit-fill-available;
         margin-bottom: 35px;
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
@@ -39,4 +52,18 @@ section {
 
 .card-txt h1 {
     align-self: end;
+}
+
+@media (max-width: 1199px) {
+    .card {
+        width: 45%;
+    }
+}
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+    .card h1, .card h2, .card h3, .card p{
+        margin: .5rem 0;
+    }
 }
