@@ -1,0 +1,42 @@
+main {
+    padding: 5.5rem 3rem 1rem 3rem;
+}
+
+section {
+    padding: 0;
+}
+
+.card {
+    border: 2px solid var(--clr-accent);
+    border-radius: 1rem;
+    width: 25rem;
+    z-index: 10;
+}
+.card img{
+        object-fit: contain;
+        position: relative;
+        width: 24.8rem;
+        margin-bottom: 35px;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        margin: 0;
+}
+.card-txt{
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+}
+.card-txt h1, .card-txt h2, .card-txt h3{
+    text-transform: uppercase;
+}
+
+.card-txt h3 {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    letter-spacing: 3px;
+}
+
+.card-txt h1 {
+    align-self: end;
+}

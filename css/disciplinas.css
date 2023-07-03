@@ -1,7 +1,10 @@
+main{
+    padding-top: 5.5rem;
+}
 .ejercicios-claves {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .fullbody-gral {
@@ -37,3 +40,14 @@
     width: 30%;
     padding: 10px;
 }
+
+@media (max-width: 768px){
+    .ejercicios-claves {
+        display: block;
+    }
+    .ejercicios-claves img {
+        margin: auto;
+        width: 100%;
+    }
+
+  }
