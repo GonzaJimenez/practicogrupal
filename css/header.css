@@ -311,6 +311,8 @@ header {
       align-items: center;
       justify-content: center;
       min-width: 90%;
+      padding: 20px 0;
+      margin: 0;
   }
 
   .logo {
@@ -323,7 +325,7 @@ header {
       left: -100%;
       width: 100%;
       height: 100%;
-      top: 75px;
+      top: 0;
       margin: 0;
       transition: all 0.5s ease-in-out 0s;
   }
@@ -373,10 +375,6 @@ header {
 @media (min-width:768px) {
   .nav-menu {
       flex: 0 0 auto;
-  }
-
-  .h-container {
-      margin-bottom: 0;
   }
 
   header a {
