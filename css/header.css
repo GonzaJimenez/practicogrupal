@@ -204,9 +204,18 @@ header {
 
 .cart {
   grid-column: 7;
+  height: 36px;
+  width: 36px;
+  display: flex;
+  align-items: flex-end;
 }
 .cart svg {
   color: var(--clr-dark-blue)
+}
+
+.cart:hover {
+  filter: drop-shadow(0 0 2px var(--clr-accent));
+  cursor: pointer;
 }
 
 /* Zona de control */
@@ -240,7 +249,7 @@ header {
   margin-bottom: 4px;
   border-radius: 2px;
   width: 20px;
-  height: 4px;
+  height: 2px;
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
@@ -261,9 +270,9 @@ header {
 }
 
 .hamburger.is-active .-top {
-  -webkit-transform: translateY(200%) rotate(45deg) !important;
-  -ms-transform: translateY(200%) rotate(45deg) !important;
-  transform: translateY(200%) rotate(45deg) !important;
+  -webkit-transform: translateY(380%) rotate(45deg) !important;
+  -ms-transform: translateY(380%) rotate(45deg) !important;
+  transform: translateY(380%) rotate(45deg) !important;
 }
 
 .hamburger.is-active .-mid {
@@ -285,6 +294,9 @@ header {
   transition: all 0.3s ease-in-out 0s;
   grid-column: 6;
   margin: 0 2rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
 }
 
 .mode-switcher>button {
@@ -332,6 +344,8 @@ header {
   }
 
   .nav-menu {
+    display: flex;
+    flex-direction: column;
     position: fixed;
     left: -100%;
     width: 100%;
@@ -383,6 +397,7 @@ header {
 
   .nav-menu.is_active {
     left: 65%;
+    background-color: var(--clr-main);
   }
 
   .has-sub-menu:hover .sub-menu {
@@ -401,6 +416,9 @@ header {
   }
 
   .menu {
+    display: flex;
+    height: 36px;
+    align-items: center;
     flex: 0 0 auto;
     width: auto;
     margin-bottom: 0;
