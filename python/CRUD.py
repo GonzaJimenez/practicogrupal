@@ -1,3 +1,7 @@
+import sqlite3
+from flask import Flask, jsonify, request
+
+DATABASE = 'inventario.db'
 #Clase Suplemento con constructor y un metodo
 class Suplemento:
     
@@ -16,120 +20,231 @@ class Suplemento:
 #Clase Inventario con constructor y sus metodos
 class Inventario:
     def __init__(self):
-        self.suplementos = []
-        self.agr_suplemento(1, 'Proteina', 10, 4500)
-        self.agr_suplemento(2, 'Creatina', 5, 3500)
-        self.agr_suplemento(3, 'BCCA', 15, 1500)
-        self.agr_suplemento(4, 'MutanMass', 25, 78500)
-        self.agr_suplemento(5, 'QuemaGrasas', 9, 15000)
-        self.agr_suplemento(6, 'Trembolona', 10, 23500)
+        self.conexion = obtener_conn_db()
+        self.cursor = self.conexion.cursor()
+       
 
     def agr_suplemento(self, codigo, desc, cant, precio):
-        suplemento = self.consultar_suplemento(codigo)
-        if suplemento == False:
-            nuevo_sup = Suplemento(codigo, desc, cant, precio)
-            self.suplementos.append(nuevo_sup)
-        else:
-            print(f"El suplemento {suplemento.descripcion} ya existe")
-            return False
+        suplemento_existente = self.consultar_suplemento(codigo)
+        if suplemento_existente:
+            return jsonify({'message': 'Ya existe un suplemento con ese codigo.'}), 400
+        
+        sql = f'INSERT INTO suplementos VALUES ({codigo}, "{desc}", {cant}, {precio});'
+        self.cursor.execute(sql)
+        self.conexion.commit()
+        return jsonify({'message': 'Suplemento agregado correctamente.'}), 200
+       
         
     def mod_suplemento(self, codigo, nue_desc, nue_can, nue_precio):
         suplemento = self.consultar_suplemento(codigo)
         if suplemento:
-            suplemento.modificar(nue_desc, nue_can, nue_precio)
+            if nue_desc == '' or ' ':
+                nue_desc = suplemento.descripcion
+            if nue_precio ==  '' or ' ':
+                nue_precio = suplemento.precio
+            sql = f'UPDATE suplementos SET descripcion = "{nue_desc}", cantidad = {nue_can}, precio = {nue_precio} WHERE codigo = {codigo};'
+            self.cursor.execute(sql)
+            self.conexion.commit()
+            return jsonify({'message': 'Suplemento modificado exitosamente.'}), 200
         else:
-            print(f"El suplemento buscado no existe")
+            return jsonify({'message': 'Suplemento no encontrado.'}), 404
     
-    def eliminar_producto(self, codigo):
-        producto = self.consultar_suplemento(codigo)
-        if producto:
-            self.suplementos.remove(producto)
-            return True
-        return False
+    def eli_suplemento(self, codigo):
+        sql = f'DELETE FROM suplementos WHERE codigo = {codigo};'
+        self.cursor.execute(sql)
+        if self.cursor.rowcount > 0:
+            self.conexion.commit()
+            return jsonify({'message': 'Suplemento eliminado correctamente.'}), 200
+        return jsonify({'message': 'Suplemento no encontrado.'}), 404
     
     def consultar_suplemento(self, codigo):
-        for suplemento in self.suplementos:
-            if suplemento.codigo == codigo:
-                return suplemento
-        return False
+        sql = f'SELECT * FROM suplementos WHERE codigo = {codigo};'
+        self.cursor.execute(sql)
+        row = self.cursor.fetchone()
+        if row:            
+            codigo, descripcion, cantidad, precio = row
+            return Suplemento(codigo, descripcion, cantidad, precio)
+        return None
 
     def mostrar_suplementos(self):
-        print("="*50)
-        print("Lista de suplementos en el inventario:")
-        print("Código\tDescripción\t\tCant\tPrecio")
-        for suplemento in self.suplementos:
-            print(f"{suplemento.codigo}\t{suplemento.descripcion}\t{suplemento.cantidad}\t{suplemento.precio}")
-        print("="*50)
+        self.cursor.execute("SELECT * FROM suplementos")
+        rows = self.cursor.fetchall()
+        suplementos = []
+        for row in rows:
+            codigo, descripcion, cantidad, precio = row
+            suplemento = {'codigo': codigo, 'descripcion': descripcion, 'cantidad': cantidad, 'precio': precio}
+            suplementos.append(suplemento)
+        return jsonify(suplementos), 200
 
 #Clase carrito con constructor y sus metodos
 
 class Carrito:
 
     def __init__(self):
+        self.conexion = obtener_conn_db()
+        self.cursor = self.conexion.cursor()
         self.items = []
 
     def sumar_suplemento(self, codigo, cantidad, inventario):
         suplemento = inventario.consultar_suplemento(codigo)
-        if suplemento == False:
-            print("El suplemento no existe.")
-            return False
+        if suplemento is False:
+            return jsonify({'message': 'El suplemento no existe.'}), 404
         if cantidad > suplemento.cantidad:
-            print("No tenemos suficiente stock disponible.")
-            return False
+            return jsonify({'message': 'La cantidad en stock no es suficiente.'}), 400
         
         for item in self.items:
             if item.codigo == codigo:
                 item.cantidad += cantidad
-                suplemento.modificar(suplemento.descripcion, suplemento.cantidad - cantidad, suplemento.precio)
-                return True
+                sql = f'UPDATE suplementos SET cantidad = cantidad - {cantidad} WHERE codigo = {codigo};'
+                self.cursor.execute(sql)
+                self.conexion.commit()
+                return jsonify({'message': 'Suplemento agregado al carrito con exito.'}), 200
             
         nuevoItem = Suplemento(codigo, suplemento.descripcion, cantidad, suplemento.precio)
-        # self.carrito.append(nuevoItem) #¿puede ser que el error esté aca?
         self.items.append(nuevoItem)
-        suplemento.modificar(suplemento.descripcion, suplemento.cantidad - cantidad, suplemento.precio)
-        return True
+        sql = f'UPDATE suplementos SET cantidad = cantidad - {cantidad} WHERE codigo = {codigo};'
+        self.cursor.execute(sql)
+        self.conexion.commit()  
+        return jsonify({'message': 'Suplemento agregado al carrito con exito.'}), 200
         
-    def quitar_suplemento(self, codigo, cantidad, inventario):
+    def restar_suplemento(self, codigo, cantidad, inventario):
         for item in self.items:
             if item.codigo == codigo:
                 if cantidad > item.cantidad:
-                    print("Cantidad a quitar mayor a la cantidad en el carrito.")
-                    return False
+                    return jsonify({'message': 'Cantidad a quitar mayor a la cantidad en el carrito.'}), 400
+                    
                 item.cantidad -= cantidad
                 if item.cantidad == 0:
                     self.items.remove(item)
-                
-                suplemento = inventario.consultar_suplemento(codigo)
-                suplemento.modificar(suplemento.descripcion, suplemento.cantidad + cantidad, suplemento.precio)
-                return True
-            
-            print("El suplemento no se encuentra en el carrito.")
-        return False
+                sql = f'UPDATE suplementos SET cantidad = cantidad + {cantidad} WHERE codigo = {codigo};'
+                self.cursor.execute(sql)
+                self.conexion.commit()
+                return jsonify({'message': 'Suplemento retirado del carrito con exito'}), 200        
+        return jsonify({'message': 'El suplemento no se encuentra en el carrito.'}), 404
 
     def mostrarCarrito(self):
-        print("-"*50)
-        print("Lista de suplementos en el carrito: ")
-        print("Codigo\tDescripcion\t\tCant\tPrecio")
+        suple_carrito = []
         for item in self.items:
-            print(f'{item.codigo}\t{item.descripcion}\t{item.cantidad}\t{item.precio}')
-        print("-"*50)
+            suplemento = {'codigo': item.codigo, 'descripcion': item.descripcion, 'cantidad': item.cantidad, 'precio': item.precio}
+            suple_carrito.append(suplemento)
+        return jsonify(suple_carrito), 200
 
 
+
+def obtener_conn_db():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+def crear_tabla():
+    conn = obtener_conn_db()
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS suplementos (
+        codigo INTEGER PRIMARY KEY,
+        descripcion TEXT NOT NULL,
+        cantidad INTEGER NOT NULL,
+        precio REAL NOT NULL
+        ) ''')
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+def crear_database():
+    conn = sqlite3.connect(DATABASE)
+    conn.close()
+    crear_tabla()
 
 
 #codigo Principal
+
+crear_database()
+app = Flask(__name__)
 sanus_inventario = Inventario()
 carrito_sanus = Carrito()
+if __name__ ==  '__main__':
+    app.run()
 
-sanus_inventario.mostrar_suplementos()
+#Configuracion y rutas API Flask
 
-carrito_sanus.sumar_suplemento(3,5, sanus_inventario)
-carrito_sanus.sumar_suplemento(2,4, sanus_inventario)
+@app.route('/suplementos/<int:codigo>', methods=['GET'])
+def obtener_suplemento(codigo):
+    suplemento = sanus_inventario.consultar_suplemento(codigo)
+    if suplemento:
+        return jsonify({
+            'codigo': suplemento.codigo,
+            'descripcion': suplemento.descripcion,
+            'cantidad': suplemento.cantidad,
+            'precio': suplemento.precio
+        }), 200
+    return jsonify({'message': 'Suplemento no encontrado.'}), 404
 
-carrito_sanus.mostrarCarrito()
+@app.route('/')
+def index():
+    return 'API de Inventario' #Podriamos colocar el html index de sanus vita
 
-carrito_sanus.quitar_suplemento(3,2, sanus_inventario)
-carrito_sanus.quitar_suplemento(2,3, sanus_inventario)
+@app.route('/suplementos', methods=['GET'])
+def obtener_suplementos():
+    return sanus_inventario.mostrar_suplementos()
 
-carrito_sanus.mostrar()
+@app.route('/suplementos', methods=['POST'])
+def agregar_suplemento():
+    codigo = request.json.get('codigo')
+    descripcion = request.json.get('descripcion')
+    cantidad = request.json.get('cantidad')
+    precio = request.json.get('precio')
+    return sanus_inventario.agr_suplemento(codigo, descripcion, cantidad, precio)
+
+@app.route('/suplementos/<int:codigo>', methods=['PUT'])
+def modificar_suplemento(codigo):
+    nue_descripcion = request.json.get('descripcion')
+    nue_cant = request.json.get('cantidad')
+    nue_pre = request.json.get('precio')
+    return sanus_inventario.mod_suplemento(codigo, nue_descripcion, nue_cant, nue_pre)
+
+@app.route('/suplementos/<int:codigo>', methods=['DELETE'])
+def eliminar_suplemento(codigo):
+    return sanus_inventario.eli_suplemento(codigo)
+
+@app.route('/carrito', methods=['POST'])
+def sumar_carrito():
+    codigo = request.json.get('codigo')
+    cantidad = request.json.get('cantidad')
+    inventario = sanus_inventario
+    return carrito_sanus.sumar_suplemento(codigo, cantidad, inventario)
+
+@app.route('/carito', methods=['DELETE'])
+def restar_carrito():
+    codigo = request.json.get('codigo')
+    cantidad = request.json.get('cantidad')
+    inventario = sanus_inventario
+    return carrito_sanus.restar_suplemento(codigo, cantidad, inventario)
+
+@app.route('/carrito', methods=['GET'])
+def obtener_carrito():
+    return carrito_sanus.mostrarCarrito()
+
+
+
+# sanus_inventario.agr_suplemento(1, 'Proteína Whey', 10, 4500)
+# sanus_inventario.agr_suplemento(2, 'BCAA', 8, 3500)
+# sanus_inventario.agr_suplemento(3, 'Pre-Entreno Explosivo', 12, 5500)
+# sanus_inventario.agr_suplemento(4, 'Creatina Monohidratada', 5, 2500)
+# sanus_inventario.agr_suplemento(5, 'Quemador de Grasa Termogénico', 9, 4800)
+# sanus_inventario.agr_suplemento(6, 'Glutamina', 7, 4000)
+# sanus_inventario.agr_suplemento(7, 'Multivitamínico', 10, 3000)
+# sanus_inventario.agr_suplemento(8, 'Omega-3', 6, 3500)
+
+
+
+# sanus_inventario.mostrar_suplementos()
+
+sanus_inventario.mod_suplemento(8,'',8,'')
+
+# carrito_sanus.mostrarCarrito()
+
+# carrito_sanus.quitar_suplemento(3,2, sanus_inventario)
+# carrito_sanus.quitar_suplemento(2,3, sanus_inventario)
+
+# carrito_sanus.mostrarCarrito()
 sanus_inventario.mostrar_suplementos()
