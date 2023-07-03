@@ -1,5 +1,6 @@
 import sqlite3
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 DATABASE = 'inventario.db'
 #Clase Suplemento con constructor y un metodo
@@ -160,6 +161,7 @@ def crear_database():
 
 crear_database()
 app = Flask(__name__)
+CORS(app)
 sanus_inventario = Inventario()
 carrito_sanus = Carrito()
 if __name__ ==  '__main__':
@@ -213,7 +215,7 @@ def sumar_carrito():
     inventario = sanus_inventario
     return carrito_sanus.sumar_suplemento(codigo, cantidad, inventario)
 
-@app.route('/carito', methods=['DELETE'])
+@app.route('/carrito', methods=['DELETE'])
 def restar_carrito():
     codigo = request.json.get('codigo')
     cantidad = request.json.get('cantidad')
@@ -224,27 +226,3 @@ def restar_carrito():
 def obtener_carrito():
     return carrito_sanus.mostrarCarrito()
 
-
-
-# sanus_inventario.agr_suplemento(1, 'Proteína Whey', 10, 4500)
-# sanus_inventario.agr_suplemento(2, 'BCAA', 8, 3500)
-# sanus_inventario.agr_suplemento(3, 'Pre-Entreno Explosivo', 12, 5500)
-# sanus_inventario.agr_suplemento(4, 'Creatina Monohidratada', 5, 2500)
-# sanus_inventario.agr_suplemento(5, 'Quemador de Grasa Termogénico', 9, 4800)
-# sanus_inventario.agr_suplemento(6, 'Glutamina', 7, 4000)
-# sanus_inventario.agr_suplemento(7, 'Multivitamínico', 10, 3000)
-# sanus_inventario.agr_suplemento(8, 'Omega-3', 6, 3500)
-
-
-
-# sanus_inventario.mostrar_suplementos()
-
-sanus_inventario.mod_suplemento(8,'',8,'')
-
-# carrito_sanus.mostrarCarrito()
-
-# carrito_sanus.quitar_suplemento(3,2, sanus_inventario)
-# carrito_sanus.quitar_suplemento(2,3, sanus_inventario)
-
-# carrito_sanus.mostrarCarrito()
-sanus_inventario.mostrar_suplementos()
