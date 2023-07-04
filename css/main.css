@@ -11,6 +11,7 @@
     --clr-main: #CFCFCF;
     --clr-secondary: #231F4D;
     --clr-accent: #007aff;
+    --clr-accent-hover: #007bff3b;
     --clr-white: #f1f1f1;
     --clr-black: #121212;
     --clr-grey: #f1f1f1;
@@ -40,7 +41,7 @@ body {
   background-color: var(--clr-white);
 }
 main {
-  padding: 4.3rem 0rem 1rem 0rem;
+  padding-bottom: 1rem;
 }
 div{
   display: block;
@@ -82,10 +83,19 @@ h1, h2, h3, h4, h5, h6, p {
   color: var(--clr-dark-blue);
 }
 
+.logo0 {
+  fill: #232536;
+}
+
+.logo1 {
+  fill: #565656;
+}
+
 /*TODAS LAS PORTADAS DE LA PÁGINA*/
 .portada .img-cover{
-  min-width: 50%;
-  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  height: 25rem;
 }
 
 /*Area de presentación*/
@@ -176,7 +186,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 .actividad .img-actividad:hover{
   /* filter: grayscale(0%); */
-  transform:scale(1.15);
+  transform:scale(1.1);
 }
 
 /* Area ejercicios Gimnasio */
