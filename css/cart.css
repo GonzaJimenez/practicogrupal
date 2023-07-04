@@ -1,0 +1,123 @@
+main{
+    padding-top: 5.5rem;
+}
+
+section {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.carrito {
+    padding: 1rem;
+    border: 1px solid var(--clr-accent);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.cart-item {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1rem;
+    border-bottom: 1px solid var(--clr-dark-blue);
+    margin: 1rem 0;
+}
+
+.info {
+    grid-column: 1 / span 4;
+}
+
+.price {
+    grid-column: 5;
+    display: grid;
+    grid-template-areas: 
+    "mas menos"
+    "cantidad cantidad"
+    "precio precio";
+    justify-content: end;
+    align-items: end;
+    color: var(--clr-dark-blue);
+    margin-left: 1rem;
+}
+
+.mas {
+    grid-area: mas;
+}
+
+.menos {
+    grid-area: menos;
+}
+
+.mas, .menos {
+    width: 36px;
+    height: 36px;
+    background-color: var(--clr-main);
+    border: 1px solid var(--clr-dark-blue);
+    border-radius: .5rem;
+    margin: 0 .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+.mas, .menos svg {
+    color: var(--clr-dark-blue);
+}
+
+.mas:hover, .menos:hover {
+    
+  filter: drop-shadow(0 0 2px var(--clr-accent));
+}
+
+.cantidad {
+    grid-area: cantidad;
+}
+
+.precio {
+    grid-area: precio;
+    justify-self: end;
+}
+
+.total {
+    display: flex;
+    flex-direction: row;
+    padding: 0 1rem;
+    justify-content: space-between;
+}
+
+.buy {
+    width: 30%;
+    padding: 1rem;
+    border: 1px solid;
+    border-radius: 1rem;
+    color: var(--clr-white);
+    background-color: var(--clr-secondary);
+    text-transform: uppercase;
+    font: bold;
+    align-self: flex-end;
+    cursor: pointer;
+    font-family: var(--ltr-main-font-f);
+    font: var(--ltr-main-font-f);
+    font-size: 1rem;
+    transition: all .5s ease-in-out;
+}
+.buy:hover {
+    color: var(--clr-accent);
+    
+}
+@media (max-width:768px) {
+    section{
+        width: 100%;
+        padding: 0 .5rem;
+    }
+
+    .cart-item{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .buy {
+        width: 100%;
+    }
+}
