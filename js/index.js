@@ -113,6 +113,8 @@ let footer = `
             </li>
             <li><a href="nosotros.html" class="f-link">Sobre nosotros</a></li>
             <li><a href="contacto.html" class="f-link">Contacto</a></li>
+            <li><a href="cargaCRUD.html" class="f-link">Agregar</a></li>
+            <li><a href="eliminarCRUD.html" class="f-link">Quitar</a></li>
         </ul>
         <div class="subscription">
             <div class="well-cta--form">

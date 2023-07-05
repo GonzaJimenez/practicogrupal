@@ -6,13 +6,15 @@ DATABASE = 'inventario.db'
 #Clase Suplemento con constructor y un metodo
 class Suplemento:
     
-    def __init__(self, codigo, desc, cant, pre):        
+    def __init__(self, codigo, nombre, desc, cant, pre):        
             self.codigo = codigo
+            self.nombre = nombre
             self.descripcion = desc
             self.cantidad = cant
             self.precio = pre
         
-    def modificar(self, nue_desc, nue_can, nue_precio):        
+    def modificar(self, nue_nom, nue_desc, nue_can, nue_precio): 
+            self.nombre = nue_nom      
             self.descripcion = nue_desc
             self.cantidad = nue_can
             self.precio = nue_precio
@@ -25,25 +27,27 @@ class Inventario:
         self.cursor = self.conexion.cursor()
        
 
-    def agr_suplemento(self, codigo, desc, cant, precio):
+    def agr_suplemento(self, codigo, nom, desc, cant, precio):
         suplemento_existente = self.consultar_suplemento(codigo)
         if suplemento_existente:
             return jsonify({'message': 'Ya existe un suplemento con ese codigo.'}), 400
         
-        sql = f'INSERT INTO suplementos VALUES ({codigo}, "{desc}", {cant}, {precio});'
+        sql = f'INSERT INTO suplementos VALUES ({codigo}, "{nom}", "{desc}", {cant}, {precio});'
         self.cursor.execute(sql)
         self.conexion.commit()
         return jsonify({'message': 'Suplemento agregado correctamente.'}), 200
        
         
-    def mod_suplemento(self, codigo, nue_desc, nue_can, nue_precio):
+    def mod_suplemento(self, codigo, nue_nom, nue_desc, nue_can, nue_precio):
         suplemento = self.consultar_suplemento(codigo)
         if suplemento:
+            if nue_nom == '' or ' ':
+                nue_nom = suplemento.nombre
             if nue_desc == '' or ' ':
                 nue_desc = suplemento.descripcion
             if nue_precio ==  '' or ' ':
                 nue_precio = suplemento.precio
-            sql = f'UPDATE suplementos SET descripcion = "{nue_desc}", cantidad = {nue_can}, precio = {nue_precio} WHERE codigo = {codigo};'
+            sql = f'UPDATE suplementos SET nombre = "{nue_nom}", descripcion = "{nue_desc}", cantidad = {nue_can}, precio = {nue_precio} WHERE codigo = {codigo};'
             self.cursor.execute(sql)
             self.conexion.commit()
             return jsonify({'message': 'Suplemento modificado exitosamente.'}), 200
@@ -63,8 +67,8 @@ class Inventario:
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         if row:            
-            codigo, descripcion, cantidad, precio = row
-            return Suplemento(codigo, descripcion, cantidad, precio)
+            codigo, nombre, descripcion, cantidad, precio = row
+            return Suplemento(codigo, nombre, descripcion, cantidad, precio)
         return None
 
     def mostrar_suplementos(self):
@@ -72,8 +76,8 @@ class Inventario:
         rows = self.cursor.fetchall()
         suplementos = []
         for row in rows:
-            codigo, descripcion, cantidad, precio = row
-            suplemento = {'codigo': codigo, 'descripcion': descripcion, 'cantidad': cantidad, 'precio': precio}
+            codigo, nombre, descripcion, cantidad, precio = row
+            suplemento = {'codigo': codigo, 'nombre':nombre, 'descripcion': descripcion, 'cantidad': cantidad, 'precio': precio}
             suplementos.append(suplemento)
         return jsonify(suplementos), 200
 
@@ -101,7 +105,7 @@ class Carrito:
                 self.conexion.commit()
                 return jsonify({'message': 'Suplemento agregado al carrito con exito.'}), 200
             
-        nuevoItem = Suplemento(codigo, suplemento.descripcion, cantidad, suplemento.precio)
+        nuevoItem = Suplemento(codigo, suplemento.nombre, suplemento.descripcion, cantidad, suplemento.precio)
         self.items.append(nuevoItem)
         sql = f'UPDATE suplementos SET cantidad = cantidad - {cantidad} WHERE codigo = {codigo};'
         self.cursor.execute(sql)
@@ -126,7 +130,7 @@ class Carrito:
     def mostrarCarrito(self):
         suple_carrito = []
         for item in self.items:
-            suplemento = {'codigo': item.codigo, 'descripcion': item.descripcion, 'cantidad': item.cantidad, 'precio': item.precio}
+            suplemento = {'codigo': item.codigo, 'nombre': item.nombre, 'descripcion': item.descripcion, 'cantidad': item.cantidad, 'precio': item.precio}
             suple_carrito.append(suplemento)
         return jsonify(suple_carrito), 200
 
@@ -143,6 +147,7 @@ def crear_tabla():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS suplementos (
         codigo INTEGER PRIMARY KEY,
+        nombre TEXT NOT NULL,
         descripcion TEXT NOT NULL,
         cantidad INTEGER NOT NULL,
         precio REAL NOT NULL
@@ -175,6 +180,7 @@ def obtener_suplemento(codigo):
     if suplemento:
         return jsonify({
             'codigo': suplemento.codigo,
+            'nombre': suplemento.nombre,
             'descripcion': suplemento.descripcion,
             'cantidad': suplemento.cantidad,
             'precio': suplemento.precio
@@ -192,17 +198,19 @@ def obtener_suplementos():
 @app.route('/suplementos', methods=['POST'])
 def agregar_suplemento():
     codigo = request.json.get('codigo')
+    nombre = request.json.get('nombre')
     descripcion = request.json.get('descripcion')
     cantidad = request.json.get('cantidad')
     precio = request.json.get('precio')
-    return sanus_inventario.agr_suplemento(codigo, descripcion, cantidad, precio)
+    return sanus_inventario.agr_suplemento(codigo, nombre, descripcion, cantidad, precio)
 
 @app.route('/suplementos/<int:codigo>', methods=['PUT'])
 def modificar_suplemento(codigo):
+    nue_nom = request.json.get('nombre')
     nue_descripcion = request.json.get('descripcion')
     nue_cant = request.json.get('cantidad')
     nue_pre = request.json.get('precio')
-    return sanus_inventario.mod_suplemento(codigo, nue_descripcion, nue_cant, nue_pre)
+    return sanus_inventario.mod_suplemento(codigo, nue_nom, nue_descripcion, nue_cant, nue_pre)
 
 @app.route('/suplementos/<int:codigo>', methods=['DELETE'])
 def eliminar_suplemento(codigo):

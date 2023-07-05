@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Productos</title>
+    <!-- <link rel="stylesheet" href="css/estilos.css"> -->
+</head>
+
+<body>
+    <h1>Baja de Suplementos</h1>
+    <h3>Codo a Codo 2023</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th align="right">Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="suplemento in suplementos">
+                <td>{{suplemento.codigo}}</td>
+                <td>{{suplemento.nombre}}</td>
+                <td>{{suplemento.descripcion}}</td>
+                <td align="right">{{suplemento.cantidad}}</td>
+                <td align="right">{{suplemento.precio}}</td>
+                <td><button @click="eliminarSuplemento(suplemento.codigo)">Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="contenedor-centrado">
+        <a href="index.html">Menu principal</a>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- <script src="js/vue.js"></script> -->
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    suplementos: []
+                }
+            },
+            methods: {
+                obtenerSuplementos() {
+                    const URL = "https://evannj.pythonanywhere.com/"
+                    
+                    fetch(URL + 'suplementos')
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json()
+                            } else {
+                                throw new Error('Error al obtener los suplementos.')}
+                            })
+                        .then(data => {
+                            this.suplementos = data
+                        })
+                        .catch(error => {
+                            console.log('Error:', error)
+                            alert('Error al obtener los suplementos.')
+                        })
+                },
+                eliminarSuplemento(codigo) {
+                    const URL = "https://evannj.pythonanywhere.com/"
+                    fetch(URL + `suplementos/${codigo}`, { method: 'DELETE' })
+                        .then(response => {
+                            if (response.ok) {
+                                    // Eliminar el producto de la lista después de eliminarlo en el servidor
+                                this.suplementos = this.suplementos.filter(suplemento => suplemento.codigo !== codigo)
+                                console.log('Suplemento eliminado correctamente.')}
+                        })
+                        .catch(error => {
+                            console.log('Error:', error)
+                            alert('Error al eliminar el suplemento.')
+                        })
+                }
+            },
+            mounted() {
+                this.obtenerSuplementos()
+            }
+        })
+        app.mount('body')
+    </script>
+</body>
+
+</html>
