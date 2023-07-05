@@ -78,27 +78,27 @@ var app = new Vue({
                     ejercicios: [{
                         nombre: "Flexiones, push up o lagartijas",
                         descripcion: "se trata de un ejercicio que pone a trabajar el conjunto de los pectorales mayores y menores, los deltoides frontales y posteriores al igual que los triceps simultáneamente para mayor tonificación muscular además del estimular el sistema circulatorio.",
-                        foto: "img/calistenia-flexiones.jpg"
+                        foto: "img/calistenia-flexiones.webp"
                     },
                     {
                         nombre: "Sentadillas, cucliclas o squats",
                         descripcion: "este ejercicio es especial para tonificar y aumentar la masa muscular de los cuádriceps, los glúteos, los músculos inferiores de la tibia y el peroné, la parte interna de los muslos, las caderas y los gemelos.",
-                        foto: "img/calistenia-sentadillas.jpg"
+                        foto: "img/calistenia-sentadillas.webp"
                     },
                     {
                         nombre: "Dominada, pull up o elevación en barra",
                         descripcion: "trabaja con los músculos dorsales, los bíceps, los músculos romboides y trapezoidales, los antebrazos y los músculos de las manos.",
-                        foto: "img/calistenia-dominada.jpg"
+                        foto: "img/calistenia-dominada.webp"
                     },
                     {
                         nombre: "Elevación de piernas",
                         descripcion: "trabaja el complejo de los músculos abdominales, músculos oblicuos, los músculos intercostales, los músculos de agarre, los músculos frontales de la cadera, los cuádriceps, el cuádriceps sartorio, el serrato y el diafragma.",
-                        foto: "img/calistenia-elevacionpierna.jpg"
+                        foto: "img/calistenia-elevacionpierna.webp"
                     },
                     {
                         nombre: "Puente o bridges",
                         descripcion: "trabaja con los músculos de la parte baja de la espalda, la parte trasera de las caderas, los músculos femorales y los bíceps.",
-                        foto: "img/calistenia-elevacioncadera.jpg"
+                        foto: "img/calistenia-elevacioncadera.webp"
                     }
                     ],
                     calentamientos: [{
