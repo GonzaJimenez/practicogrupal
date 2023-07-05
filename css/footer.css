@@ -1,24 +1,27 @@
-footer{
+footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr) 50%;
     padding: 0 3rem;
-    grid-template-areas: 
+    grid-template-areas:
         "divider divider divider"
         "about adopt subscribe"
         "social social subscribe"
         "legal legal legal";
     width: 100%;
 }
+
 footer ul a {
     color: var(--clr-dark-grey);
 }
+
 .divider {
     grid-area: divider;
     text-align: center;
     margin-bottom: 2em;
     position: relative;
 }
-.divider::before{
+
+.divider::before {
     content: "";
     width: 100%;
     height: 1px;
@@ -30,36 +33,49 @@ footer ul a {
     color: var(--clr-accent);
 }
 
-.footer__section{
+.footer__section {
     margin: 2rem 0;
 }
-.d-list{
+
+.d-list {
     grid-area: about;
 }
-.adopt-list{
+
+.adopt-list {
     grid-area: adopt;
 }
-.subscription{
+
+.subscription {
     grid-area: subscribe;
+    padding-bottom: 1rem;
 }
-.social-media{
+
+.social-media {
     grid-area: social;
 }
 
-.well-cta--form{
+.well-cta--form {
     display: grid;
     grid-gap: 10px;
     background: var(--clr-accent);
     border-radius: 10px;
     padding: 30px;
 }
-.well-cta--form__text{
+
+.well-cta--form__text {
     margin-bottom: 10px;
 }
-.well-cta--cta{
+
+.subscription p,
+.subscription h3 {
+    color: var(--clr-perma-w);
+}
+
+.well-cta--cta {
     font-size: 18px;
 }
-input.input-form{
+
+input.input-form {
     border: 2px solid var(--clr-white);
     width: 100%;
     color: var(--clr-dark-blue);
@@ -69,7 +85,8 @@ input.input-form{
     font-size: 18px;
     padding: 15px;
 }
-a.button{
+
+a.button {
     outline: none;
     width: 100%;
     text-align: center;
@@ -83,69 +100,81 @@ a.button{
     top: 0;
     transition: 0.2 ease;
 }
+
 .button.secondary {
     background: var(--clr-secondary);
     color: var(--clr-white);
 }
-.social-media li{
+
+.social-media li {
     display: inline-block;
     vertical-align: middle;
 }
-.social-media p{
+
+.social-media p {
     margin-top: 15px;
 }
 
-.f-section p{
+.f-section p {
     /* font-weight: ; */
     font-size: 24px !important;
 }
-/* .f-section > a {
-    color: var(--clr-dark-blue);
-    font-size: 18px;
-} */
+
 .f-section li a {
     padding: 5px 0;
     display: block;
 }
-.legal-stuff{
+
+.legal-stuff {
     grid-area: legal;
     padding: 25px;
     text-align: center;
     border-top: 0.5px solid var(--clr-accent);
 
 }
-.legal-stuff span{
+
+.legal-stuff span {
     margin-right: 20px;
     color: var(--clr-dark-grey);
 }
-.legal-stuff a{
-    /* border-color: var(--clr-light-blue); */
+
+.legal-stuff a {
     color: var(--clr-dark-grey);
     margin: 0 10px;
 }
-.f-link{
+
+.f-link {
     font-size: 18px;
 }
-.social-media a:hover{
+
+.social-media a:hover {
     filter: drop-shadow(0 0 2px var(--clr-accent));
 }
 
-.social-media svg{
+.social-media svg {
     height: 2rem;
     width: 2rem;
     stroke-width: 1.5;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
     footer {
         display: block;
         text-align: center;
     }
-    .social-media{
+
+    .social-media {
         margin: 0;
     }
-    
+
+    .adopt-list {
+        padding: 1rem 0;
+    }
+
     .d-list {
         padding-top: 0.5rem;
     }
-} 
+    .subscription h3{
+        margin: 0;
+    }
+}

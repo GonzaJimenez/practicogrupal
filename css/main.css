@@ -11,6 +11,7 @@
     --clr-main: #CFCFCF;
     --clr-secondary: #231F4D;
     --clr-accent: #007aff;
+    --clr-accent-hover: #007bff3b;
     --clr-white: #f1f1f1;
     --clr-black: #121212;
     --clr-grey: #f1f1f1;
@@ -21,7 +22,7 @@
     --clr-semi-dark-blue: #000531;
     --ltr-main-font-f: "Jost", "sans-serif";
     --rtl-main-font-f: "Tajawal", "sans-serif";
-
+    --clr-perma-w: #f1f1f1;
     --swiper-navigation-size: 44px;
     --swiper-theme-color: #007aff;
     --animate-duration: 1s;
@@ -39,7 +40,9 @@ body {
   transition: all 0.25s ease-in-out 0s;
   background-color: var(--clr-white);
 }
-
+main {
+  padding-bottom: 1rem;
+}
 div{
   display: block;
 }
@@ -59,18 +62,12 @@ header{
   right: 0;
   width: 100%;
 }
+section {
+  padding: 0 2rem;
+}
 
 ul{
-  display: block;
-  list-style: disc;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
-  padding-left: 2rem;
+  padding: 0 2rem;
 }
 
 a {
@@ -86,10 +83,19 @@ h1, h2, h3, h4, h5, h6, p {
   color: var(--clr-dark-blue);
 }
 
+.logo0 {
+  fill: #232536;
+}
+
+.logo1 {
+  fill: #565656;
+}
+
 /*TODAS LAS PORTADAS DE LA PÁGINA*/
 .portada .img-cover{
-  min-width: 50%;
-  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+  height: 25rem;
 }
 
 /*Area de presentación*/
@@ -97,10 +103,11 @@ h1, h2, h3, h4, h5, h6, p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 3rem;
 }
-
-.presentacion .descripcion{
-  width: 60%;
+.presentacion img {
+  margin: auto;
+  width: 50%;
 }
 
 /*Area de actividades*/
@@ -179,7 +186,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 .actividad .img-actividad:hover{
   /* filter: grayscale(0%); */
-  transform:scale(1.15);
+  transform:scale(1.1);
 }
 
 /* Area ejercicios Gimnasio */
@@ -199,7 +206,7 @@ h1, h2, h3, h4, h5, h6, p {
 /* ¿Quienes somos? */
 
 .about-gral{
-  border-bottom:#303030 1px outset;
+  border-bottom:var(--clr-accent) 1px outset;
 }
 .about h2{
   display: flex;
@@ -209,20 +216,34 @@ h1, h2, h3, h4, h5, h6, p {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
 }
 
 .fundamentos{
-  height: 300px;
   display:flex;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: #303030 1px outset;
+  justify-content: space-around;
+  border-bottom: var(--clr-accent) 1px outset;
 }
-.fundamentos .fundamento{
-  padding:10px;
+.fundamentos article{
+  padding: 1rem;
 }
-#unicofundamento{
-  border-left: #303030 1px outset;
-  border-right: #303030 1px outset;;
+.unicofundamento{
+  border-left: var(--clr-dark-blue) 2px outset;
+  border-right: var(--clr-dark-blue) 2px outset;
+}
+
+/* Media */
+@media (max-width: 768px){
+  section {
+    display: block !important;
+  }
+  .presentacion img {
+    margin: auto;
+    width: 80%;
+  }
+  .unicofundamento{
+    border-left: 0;
+    border-right: 0;
+  }
+
 }
