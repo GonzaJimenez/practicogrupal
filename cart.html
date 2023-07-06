@@ -21,19 +21,11 @@
 <body class=" dark-theme">
     <header class="" id="idheader">
     </header>
-    <!-- <div class="card" v-for="suplemento in suplementos">
-        <img src="img/calistenia-sentadillas.webp" alt="">
-        <div class="card-txt">
-            <h3>Suplementos</h3>
-            <h2></h2>
-            <p>Cantidad disponible: </p>
-            <h1></h1>                            
-        </div>
-    </div> -->
+
     <main>
 
 
-<!-- FUNCIONA ENTRE MUCHAS "" PERO NO COMPILA EN TIEMPO REAL, HAY QUE REVISAR ESTO MEJOR Y MAS RELAJADO -->
+        <!-- FUNCIONA ENTRE MUCHAS "" PERO NO COMPILA EN TIEMPO REAL, HAY QUE REVISAR ESTO MEJOR Y MAS RELAJADO -->
 
         <section v-for="suplemento in suplementos" :key="suplemento.codigo">
             <ul class="carrito">
@@ -70,8 +62,8 @@
         </section>
         <section class="carrito">
             <div class="total">
-                <h3>Total</h3>
-                <h3>$SUMA</h3>
+                <h2>Total</h2>
+                <h3>${{total}}</h3>
             </div>
             <button class="buy"><strong>Comprar</strong></button>
         </section>
@@ -90,12 +82,14 @@
             data() {
                 return {
                     suplementos: [],
-                    carrito: []
+                    carrito: [],
+                    total: 0,
                 }
             },
-            created() {
+            mounted() {
                 this.obtenerSuplementos()
                 this.obtenerCarrito()
+                this.actualizarTotal()
             },
             methods: {
                 obtenerSuplementos() {
@@ -103,6 +97,7 @@
                         .then(response => response.json())
                         .then(data => {
                             this.suplementos = data
+                            this.actualizarTotal()
                         })
                         .catch(error => {
                             console.error(URL + 'suplementos', error)
@@ -120,6 +115,12 @@
                             alert('Error al obtener el carrito.')
                         })
                 },
+                actualizarTotal() {
+                    this.total = 0
+                    this.carrito.forEach(item => {
+                        this.total += parseFloat(item.precio)
+                    });
+                },
                 agregaralCarrito(suplemento) {
                     fetch(URL + 'carrito', {
                         method: 'POST',
@@ -133,9 +134,20 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            alert(data.message)
+                            // alert(data.message)
+                            const carritoItem = this.carrito.find(item => item.codigo === suplemento.codigo);
+
+                            if (carritoItem) {
+                                carritoItem.cantidad++; // Incrementa la cantidad
+                            } else {
+                                this.carrito.push(suplemento);
+                            }
+
+
                             this.carrito.push(suplemento)
                             this.obtenerSuplementos()
+                            this.obtenerCarrito()
+                            this.actualizarTotal()
                         })
                         .catch(error => {
                             console.error('Error al agregar el suplemento al carrito: ', error)
@@ -155,34 +167,27 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            alert(data.message)
+                            // alert(data.message)
+                            this.obtenerCarrito()
                             const index = this.carrito.findIndex(item => item.codigo === suplemento.codigo)
                             if (index !== -1) {
                                 this.carrito.splice(index, 1)
                             }
                             this.obtenerSuplementos()
+                            this.actualizarTotal()
                         })
                         .catch(error => {
                             console.error('Error al restar el suplemento del carrito:', error)
                             alert('Error al restar el suplemento del carrito')
                         })
                 },
-                obtenerCantidadCarrito(codigo){
-                        const carritoItem = this.carrito.find(item => item.codigo === codigo)
-                        return carritoItem ? carritoItem.cantidad : 0
+                obtenerCantidadCarrito(codigo) {
+                    const carritoItem = this.carrito.find(item => item.codigo === codigo)
+                    return carritoItem ? carritoItem.cantidad : 0
 
-
-                    // let cantidad = 0
-                    // for (let i=0; i < this.carrito.length; i++){
-                    //     if (this.carrito[i].codigo === codigo){
-                    //         cantidad += this.carrito[i].cantidad
-                    //     }
-                    // }
-                    // return cantidad
                 }
             }
         })
-
         app.mount('body')
 
     </script>

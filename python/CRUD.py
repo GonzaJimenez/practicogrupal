@@ -40,13 +40,7 @@ class Inventario:
         
     def mod_suplemento(self, codigo, nue_nom, nue_desc, nue_can, nue_precio):
         suplemento = self.consultar_suplemento(codigo)
-        if suplemento:
-            if nue_nom == '' or ' ':
-                nue_nom = suplemento.nombre
-            if nue_desc == '' or ' ':
-                nue_desc = suplemento.descripcion
-            if nue_precio ==  '' or ' ':
-                nue_precio = suplemento.precio
+        if suplemento:           
             sql = f'UPDATE suplementos SET nombre = "{nue_nom}", descripcion = "{nue_desc}", cantidad = {nue_can}, precio = {nue_precio} WHERE codigo = {codigo};'
             self.cursor.execute(sql)
             self.conexion.commit()
@@ -103,14 +97,14 @@ class Carrito:
                 sql = f'UPDATE suplementos SET cantidad = cantidad - {cantidad} WHERE codigo = {codigo};'
                 self.cursor.execute(sql)
                 self.conexion.commit()
-                return jsonify({'message': 'Suplemento agregado al carrito con exito.'}), 200
+                return jsonify(), 200
             
         nuevoItem = Suplemento(codigo, suplemento.nombre, suplemento.descripcion, cantidad, suplemento.precio)
         self.items.append(nuevoItem)
         sql = f'UPDATE suplementos SET cantidad = cantidad - {cantidad} WHERE codigo = {codigo};'
         self.cursor.execute(sql)
         self.conexion.commit()  
-        return jsonify({'message': 'Suplemento agregado al carrito con exito.'}), 200
+        return jsonify(), 200
         
     def restar_suplemento(self, codigo, cantidad, inventario):
         for item in self.items:
@@ -124,7 +118,7 @@ class Carrito:
                 sql = f'UPDATE suplementos SET cantidad = cantidad + {cantidad} WHERE codigo = {codigo};'
                 self.cursor.execute(sql)
                 self.conexion.commit()
-                return jsonify({'message': 'Suplemento retirado del carrito con exito'}), 200        
+                return jsonify(), 200        
         return jsonify({'message': 'El suplemento no se encuentra en el carrito.'}), 404
 
     def mostrarCarrito(self):
