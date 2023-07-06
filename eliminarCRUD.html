@@ -1,35 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Productos</title>
-    <!-- <link rel="stylesheet" href="css/estilos.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&amp;display=swap" />
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/lightDark.css">
+    <!-- <link rel="stylesheet" href="css/cart.css"> -->
+    <link rel="stylesheet" href="css/tienda.css">
+    <title>Sanus Vita</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/ico.png"">
 </head>
-
-<body>
+<body class=" dark-theme">
+    <header class="" id="idheader"></header>
     <h1>Baja de Suplementos</h1>
     <h3>Codo a Codo 2023</h3>
-    <table>
+    <table class="suples">
         <thead>
             <tr>
-                <th>Código</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Cantidad</th>
-                <th align="right">Precio</th>
-                <th>Acciones</th>
+                <th><p>Código</p></th>
+                <th><p>Nombre</p></th>
+                <th><p>Descripción</p></th>
+                <th><p>Cantidad</p></th>
+                <th align="right"><p>Precio</p></th>
+                <th><p>Acciones</p></th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="suplemento in suplementos">
-                <td>{{suplemento.codigo}}</td>
-                <td>{{suplemento.nombre}}</td>
-                <td>{{suplemento.descripcion}}</td>
-                <td align="right">{{suplemento.cantidad}}</td>
-                <td align="right">{{suplemento.precio}}</td>
+                <td><p>{{suplemento.codigo}}</p></td>
+                <td><p>{{suplemento.nombre}}</p></td>
+                <td><p>{{suplemento.descripcion}}</p></td>
+                <td align="right"><p>{{suplemento.cantidad}}</p></td>
+                <td align="right"><p>{{suplemento.precio}}</p></td>
                 <td><button @click="eliminarSuplemento(suplemento.codigo)">Eliminar</button></td>
             </tr>
         </tbody>
@@ -37,56 +47,13 @@
     <div class="contenedor-centrado">
         <a href="index.html">Menu principal</a>
     </div>
-
+    
+    <footer id="idfooter"></footer>
+    <script defer src=" js/darkMode.js"></script>
+    <script defer src="js/header.js"></script>
+    <script src="js/index.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
-    <!-- <script src="js/vue.js"></script> -->
-    <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    suplementos: []
-                }
-            },
-            methods: {
-                obtenerSuplementos() {
-                    const URL = "https://evannj.pythonanywhere.com/"
-                    
-                    fetch(URL + 'suplementos')
-                        .then(response => {
-                            if (response.ok) {
-                                return response.json()
-                            } else {
-                                throw new Error('Error al obtener los suplementos.')}
-                            })
-                        .then(data => {
-                            this.suplementos = data
-                        })
-                        .catch(error => {
-                            console.log('Error:', error)
-                            alert('Error al obtener los suplementos.')
-                        })
-                },
-                eliminarSuplemento(codigo) {
-                    const URL = "https://evannj.pythonanywhere.com/"
-                    fetch(URL + `suplementos/${codigo}`, { method: 'DELETE' })
-                        .then(response => {
-                            if (response.ok) {
-                                    // Eliminar el producto de la lista después de eliminarlo en el servidor
-                                this.suplementos = this.suplementos.filter(suplemento => suplemento.codigo !== codigo)
-                                console.log('Suplemento eliminado correctamente.')}
-                        })
-                        .catch(error => {
-                            console.log('Error:', error)
-                            alert('Error al eliminar el suplemento.')
-                        })
-                }
-            },
-            mounted() {
-                this.obtenerSuplementos()
-            }
-        })
-        app.mount('body')
-    </script>
+    <script defer src="js/metodos.js"></script>
 </body>
 
 </html>
