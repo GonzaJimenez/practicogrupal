@@ -23,102 +23,49 @@
     </header>
 
     <main>
-        <section>
+
+
+        <!-- FUNCIONA ENTRE MUCHAS "" PERO NO COMPILA EN TIEMPO REAL, HAY QUE REVISAR ESTO MEJOR Y MAS RELAJADO -->
+
+        <section v-for="suplemento in suplementos" :key="suplemento.codigo">
             <ul class="carrito">
                 <li class="cart-item">
                     <div class="info">
-                        <h1>Producto 1</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam voluptate, dolore magnam
-                            nobis perferendis repellat perspiciatis ex sit, doloremque odio odit optio ullam nesciunt
-                            praesentium, nulla commodi magni. Praesentium, ad.</p>
-                    </div>
-                    <div class="price">
-                        <button class="mas">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-plus">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        <button class="menos">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-minus">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        <p>Cantidad: </p>
-                        <div class="precio">
-                            <h1>$5000</h1>
-                        </div>
-                    </div>
-                </li>
-                <li class="cart-item">
-                    <div class="info">
-                        <h1>Producto 2</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam voluptate, dolore magnam
-                            nobis perferendis repellat perspiciatis ex sit, doloremque odio odit optio ullam nesciunt
-                            praesentium, nulla commodi magni. Praesentium, ad.</p>
-                    </div>
-                    <div class="price">
-                        <button class="mas">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-plus">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        <button class="menos">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-minus">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        <p>Cantidad: </p>
-                        <div class="precio">
-                            <h1>$5000</h1>
-                        </div>
-                    </div>
-                </li>
-                <li class="cart-item">
-                    <div class="info">
-                        <h1>Producto 3</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam voluptate, dolore magnam
-                            nobis perferendis repellat perspiciatis ex sit, doloremque odio odit optio ullam nesciunt
-                            praesentium, nulla commodi magni. Praesentium, ad.</p>
-                    </div>
-                    <div class="price">
-                        <button class="mas">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-plus">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        <button class="menos">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-minus">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        <p>Cantidad: </p>
-                        <div class="precio">
-                            <h1>$5000</h1>
-                        </div>
-                    </div>
-                </li>
-                <div class="total">
-                    <h3>Total</h3>
-                    <h3>$SUMA</h3>
-                </div>
-                <button class="buy"><strong>Comprar</strong></button>
-            </ul>
+                        <h1>{{suplemento.nombre}}</h1>
+                        <p>{{suplemento.descripcion}}</p>
+                        <p>Cantidad disponible: {{suplemento.cantidad}}</p>
 
+                    </div>
+                    <div class="price">
+                        <button @click="agregaralCarrito(suplemento)" class="mas">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-plus">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+                        <button @click="restardelCarrito(suplemento)" class="menos">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-minus">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </button>
+                        <p>Cantidad: {{obtenerCantidadCarrito(suplemento.codigo)}} </p>
+                        <div class="precio">
+                            <h1>${{suplemento.precio}}</h1>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section class="carrito">
+            <div class="total">
+                <h2>Total</h2>
+                <h3>${{total}}</h3>
+            </div>
+            <button class="buy"><strong>Comprar</strong></button>
         </section>
     </main>
 
@@ -127,6 +74,123 @@
     <script defer src=" js/darkMode.js"></script>
     <script defer src="js/header.js"></script>
     <script src="js/index.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const URL = "https://evannj.pythonanywhere.com/"
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    suplementos: [],
+                    carrito: [],
+                    total: 0,
+                }
+            },
+            mounted() {
+                this.obtenerSuplementos()
+                this.obtenerCarrito()
+                this.actualizarTotal()
+            },
+            methods: {
+                obtenerSuplementos() {
+                    fetch(URL + 'suplementos')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.suplementos = data
+                            this.actualizarTotal()
+                        })
+                        .catch(error => {
+                            console.error(URL + 'suplementos', error)
+                            alert('Error al obtener los suplementos.')
+                        })
+                },
+                obtenerCarrito() {
+                    fetch(URL + 'carrito')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.carrito = data
+                        })
+                        .catch(error => {
+                            console.error(URL + 'carrito', error)
+                            alert('Error al obtener el carrito.')
+                        })
+                },
+                actualizarTotal() {
+                    this.total = 0
+                    this.carrito.forEach(item => {
+                        this.total += parseFloat(item.precio)
+                    });
+                },
+                agregaralCarrito(suplemento) {
+                    fetch(URL + 'carrito', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            codigo: suplemento.codigo,
+                            cantidad: 1 // se suma una unidad
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            // alert(data.message)
+                            const carritoItem = this.carrito.find(item => item.codigo === suplemento.codigo);
+
+                            if (carritoItem) {
+                                carritoItem.cantidad++; // Incrementa la cantidad
+                            } else {
+                                this.carrito.push(suplemento);
+                            }
+
+
+                            this.carrito.push(suplemento)
+                            this.obtenerSuplementos()
+                            this.obtenerCarrito()
+                            this.actualizarTotal()
+                        })
+                        .catch(error => {
+                            console.error('Error al agregar el suplemento al carrito: ', error)
+                            alert('Error al agregar el suplemento al carrito.')
+                        })
+                },
+                restardelCarrito(suplemento) {
+                    fetch(URL + 'carrito', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            codigo: suplemento.codigo,
+                            cantidad: 1 // se resta una unidad
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            // alert(data.message)
+                            this.obtenerCarrito()
+                            const index = this.carrito.findIndex(item => item.codigo === suplemento.codigo)
+                            if (index !== -1) {
+                                this.carrito.splice(index, 1)
+                            }
+                            this.obtenerSuplementos()
+                            this.actualizarTotal()
+                        })
+                        .catch(error => {
+                            console.error('Error al restar el suplemento del carrito:', error)
+                            alert('Error al restar el suplemento del carrito')
+                        })
+                },
+                obtenerCantidadCarrito(codigo) {
+                    const carritoItem = this.carrito.find(item => item.codigo === codigo)
+                    return carritoItem ? carritoItem.cantidad : 0
+
+                }
+            }
+        })
+        app.mount('body')
+
+    </script>
     </body>
 
 </html>

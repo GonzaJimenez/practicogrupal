@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,72 +20,40 @@
 <body>
     <header class="" id="idheader">
     </header>
-    
+
     <main>
         <section>
             <div class="wrapper">
-                <div class="card">
-                    <img src="img/calistenia-sentadillas.webp" alt="">
+                <h1>Echa un vistazo a nuestros productos de alta calidad</h1>
+                <p>
+                    Los suplementos deportivos tienen como objetivo aumentar la musculatura, perder peso o mejorar la resistencia. 
+                    Nuestros productos hechos guiados de las buenas prácticas recomendadas por la FDA para garantizar calidad y seguridad por sobre todas las cosas, 
+                    y a su vez son evaluados por el mejor laboratorio.
+                </p>
+            </div>
+        </section>
+        <section class="suples">         
+            <div class="wrapper">
+                <div class="card" v-for="suplemento in suplementos" :key="suplemento.codigo">                    
                     <div class="card-txt">
-                        <h3>Suplementos</h3>
-                        <h2>Proteina</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae explicabo adipisci deleniti dicta a quos nemo veniam reiciendis error libero, ex nostrum doloremque incidunt similique minima consequatur saepe consectetur qui?</p>
-                        <h1>$9449,99</h1>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/calistenia-sentadillas.webp" alt="">
-                    <div class="card-txt">
-                        <h3>Suplementos</h3>
-                        <h2>creatina</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae explicabo adipisci deleniti dicta a quos nemo veniam reiciendis error libero, ex nostrum doloremque incidunt similique minima consequatur saepe consectetur qui?</p>
-                        <h1>$9449,99</h1>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/calistenia-sentadillas.webp" alt="">
-                    <div class="card-txt">
-                        <h3>Suplementos</h3>
-                        <h2>BCCA</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae explicabo adipisci deleniti dicta a quos nemo veniam reiciendis error libero, ex nostrum doloremque incidunt similique minima consequatur saepe consectetur qui?</p>
-                        <h1>$9449,99</h1>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/calistenia-sentadillas.webp" alt="">
-                    <div class="card-txt">
-                        <h3>Suplementos</h3>
-                        <h2>MutanMass</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae explicabo adipisci deleniti dicta a quos nemo veniam reiciendis error libero, ex nostrum doloremque incidunt similique minima consequatur saepe consectetur qui?</p>
-                        <h1>$9449,99</h1>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/calistenia-sentadillas.webp" alt="">
-                    <div class="card-txt">
-                        <h3>Suplementos</h3>
-                        <h2>QuemaGrasas</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae explicabo adipisci deleniti dicta a quos nemo veniam reiciendis error libero, ex nostrum doloremque incidunt similique minima consequatur saepe consectetur qui?</p>
-                        <h1>$9449,99</h1>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="img/calistenia-sentadillas.webp" alt="">
-                    <div class="card-txt">
-                        <h3>Suplementos</h3>
-                        <h2>Tembolona</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae explicabo adipisci deleniti dicta a quos nemo veniam reiciendis error libero, ex nostrum doloremque incidunt similique minima consequatur saepe consectetur qui?</p>
-                        <h1>$9449,99</h1>
+                        <h3>Suplemento</h3>
+                        <h2>{{suplemento.nombre}}</h2>
+                        <p>{{suplemento.descripcion}}
+                            <br><br><br>Cantidad disponible: {{suplemento.cantidad}}
+                        </p>
+                        <h1>${{suplemento.precio}}</h1>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="idfooter">     
+    <footer id="idfooter">
     </footer>
-    <script defer src=" js/darkMode.js"></script>
+    <script defer src="js/darkMode.js"></script>
     <script defer src="js/header.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script defer src="js/metodos.js"></script>    
     <script src="js/index.js"></script>
-</body>
+    </body>
 </html>
