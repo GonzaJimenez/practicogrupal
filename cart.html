@@ -33,11 +33,12 @@
     <main>
 
 
-<!-- FUNCIONA ENTRE MUCHAS "" PERO NO COMPILA EN TIEMPO REAL, HAY QUE REVISAR ESTO MEJOR Y MAS RELAJADO -->
+        <!-- FUNCIONA ENTRE MUCHAS "" PERO NO COMPILA EN TIEMPO REAL, HAY QUE REVISAR ESTO MEJOR Y MAS RELAJADO -->
 
-        <section v-for="suplemento in suplementos" :key="suplemento.codigo">
+        <section>
+            <!-- v-if="estaEnCarrito(suplemento)" -->
             <ul class="carrito">
-                <li class="cart-item">
+                <li class="cart-item" v-for="suplemento in suplementos" :key="suplemento.codigo">
                     <div class="info">
                         <h1>{{suplemento.nombre}}</h1>
                         <p>{{suplemento.descripcion}}</p>
@@ -62,18 +63,19 @@
                         </button>
                         <p>Cantidad: {{obtenerCantidadCarrito(suplemento.codigo)}} </p>
                         <div class="precio">
-                            <h1>${{suplemento.precio}}</h1>
+                            <h1>${{suplemento.precio * obtenerCantidadCarrito(suplemento.codigo)}}</h1>
+                            <!-- Multiplicamos para tener el precio final -->
                         </div>
                     </div>
                 </li>
+                <section class="s-total">
+                    <div class="total">
+                        <h3>Total</h3>
+                        <h3>${{ totalCarrito }}</h3>
+                    </div>
+                    <button class="buy"><strong>Comprar</strong></button>
+                </section>
             </ul>
-        </section>
-        <section class="carrito">
-            <div class="total">
-                <h3>Total</h3>
-                <h3>$SUMA</h3>
-            </div>
-            <button class="buy"><strong>Comprar</strong></button>
         </section>
     </main>
 
@@ -84,7 +86,7 @@
     <script src="js/index.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
-        const URL = "https://evannj.pythonanywhere.com/"
+        const URL = "https://evannj.pythonanywhere.com/";
 
         const app = Vue.createApp({
             data() {
@@ -98,16 +100,27 @@
                 this.obtenerCarrito()
             },
             methods: {
+                sumarUnidadesDisponiblesCarrito() {
+                    let total = 0;
+                    for (const item of this.carrito) {
+                        total += item.cantidad;
+                    }
+                    return total;
+                },
                 obtenerSuplementos() {
                     fetch(URL + 'suplementos')
                         .then(response => response.json())
                         .then(data => {
                             this.suplementos = data
+                            this.obtenerCarrito(); // Llamada a obtenerCarrito después de obtener los suplementos
                         })
                         .catch(error => {
                             console.error(URL + 'suplementos', error)
                             alert('Error al obtener los suplementos.')
                         })
+                },
+                estaEnCarrito(suplemento) {
+                    return this.carrito.some(item => item.codigo === suplemento.codigo);
                 },
                 obtenerCarrito() {
                     fetch(URL + 'carrito')
@@ -119,6 +132,7 @@
                             console.error(URL + 'carrito', error)
                             alert('Error al obtener el carrito.')
                         })
+                        
                 },
                 agregaralCarrito(suplemento) {
                     fetch(URL + 'carrito', {
@@ -167,9 +181,9 @@
                             alert('Error al restar el suplemento del carrito')
                         })
                 },
-                obtenerCantidadCarrito(codigo){
-                        const carritoItem = this.carrito.find(item => item.codigo === codigo)
-                        return carritoItem ? carritoItem.cantidad : 0
+                obtenerCantidadCarrito(codigo) {
+                    const carritoItem = this.carrito.find(item => item.codigo === codigo)
+                    return carritoItem ? carritoItem.cantidad : 0
 
 
                     // let cantidad = 0
@@ -179,8 +193,20 @@
                     //     }
                     // }
                     // return cantidad
+                },
+            },
+            computed: { //Este es para obtener la suma del total
+                totalCarrito() {
+                    let total = 0;
+                    for (const item of this.carrito) {
+                        const suplemento = this.suplementos.find(s => s.codigo === item.codigo);
+                        if (suplemento) {
+                            total += suplemento.precio * item.cantidad;
+                        }
+                    }
+                    return total;
                 }
-            }
+            },
         })
 
         app.mount('body')

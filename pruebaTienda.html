@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&amp;display=swap" />
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/lightDark.css">
+    <link rel="stylesheet" href="css/tienda.css">
+    <title>Sanus Vita</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/ico.png"">
+</head>
+<body>
+    <header class="" id=" idheader">
+    </header>
+
+    <main>
+        <section id="app">
+            <div class="wrapper" >
+                <div class="card" v-for="suplemento in suplementos" :key="suplemento.codigo">
+                    <div class="card-txt">
+                        <h3>Suplemento</h3>
+                        <h2>{{ suplemento.nombre }}</h2>
+                        <p>{{ suplemento.descripcion }}<br>Cantidad disponible: {{ suplemento.cantidad }}</p>
+                        <h1>${{ suplemento.precio }}</h1>
+                        <button @click="agregarAlCarrito(suplemento)">Agregar al carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="idfooter">
+    </footer>
+    <script defer src="js/darkMode.js"></script>
+    <script defer src="js/header.js"></script>
+    <script src="js/index.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    suplementos: []
+                };
+            },
+            methods: {
+                obtenerSuplementos() {
+                    const URL = "https://evannj.pythonanywhere.com/";
+
+                    fetch(URL + 'suplementos')
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json();
+                            } else {
+                                throw new Error('Error al obtener los suplementos.');
+                            }
+                        })
+                        .then(data => {
+                            this.suplementos = data;
+                        })
+                        .catch(error => {
+                            console.log('Error:', error);
+                            alert('Error al obtener los suplementos.');
+                        });
+                },
+                agregarAlCarrito(suplemento) {
+                    this.carrito.push(suplemento);
+                    alert('El suplemento se ha agregado al carrito.');
+                }
+            },
+            mounted() {
+                this.obtenerSuplementos();
+            }
+        });
+
+        app.mount('#app');
+
+
+
+
+
+
+        // const URL = "https://evannj.pythonanywhere.com/"
+        // Realizamos la solicitud GET al servidor para obtener todos los productos
+        // fetch(URL + 'suplementos')
+        //     .then(function (response) {
+        //         if (response.ok) {
+        //             return response.json() // Parseamos la respuesta JSON
+        //         } else {
+        //             throw new Error('Error al obtener los suplementos.')
+        //         }
+        //     })
+        //     .then(function (data) {
+        //         // var tablaProductos =
+        //         //     document.getElementById('tablaProductos')
+        //         // Iteramos sobre los productos y agregamos filas a la tabla
+        //         data.forEach(function (producto) {
+        //             var fila = document.createElement('tr')
+        //             fila.innerHTML = '<td>' + producto.codigo + '</td>' +
+        //                 '<td>' + producto.descripcion + '</td>' +
+        //                 '<td align="right">' + producto.cantidad + '</td>' +
+        //                 '<td align="right">&nbsp; &nbsp;&nbsp; &nbsp;' +
+        //                 producto.precio + '</td>'
+        //             tablaProductos.appendChild(fila)
+        //         })
+        //     })
+        //     .catch(function (error) {
+        //         console.log('Error:', error)
+        //         alert('Error al obtener los productos.')
+        //     })
+
+    </script>
+    </body>
+
+</html>

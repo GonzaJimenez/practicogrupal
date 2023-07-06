@@ -391,7 +391,7 @@ header {
   .nav-menu {
     left: 100%;
     z-index: 10;
-    display: block;
+    display: flex;
     width: 35%;
   }
 
