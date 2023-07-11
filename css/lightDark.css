@@ -29,4 +29,7 @@
   .go-light {
     display: block;
   }
+  .select-field select {
+    background-color: var(--clr-extra-dark-grey);
+  }
 }

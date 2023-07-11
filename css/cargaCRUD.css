@@ -168,4 +168,6 @@ input {
   background: #099162;
   display: flex;
   justify-content: center;
+  width: 100%;
+  border: none;
 }

@@ -1,0 +1,33 @@
+
+.bar::before, .bar::after {
+    bottom: 23px;
+}
+
+.btns {
+    width: 100%;
+    display: flex;
+}
+
+.btn{
+    width: 45%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-save {
+    background-color: green;
+    &:hover{
+        background-color: rgba(0, 128, 0, 0.295);
+        color: greenyellow;
+    }
+}
+.select-field select {
+    color: var(--clr-dark-blue);
+    background-color: var(--clr-white);
+}
+
+input:focus~label,
+input:valid~label {
+  top: -30px;
+}

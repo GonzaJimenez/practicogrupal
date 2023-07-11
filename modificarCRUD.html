@@ -16,6 +16,7 @@
     <!-- <link rel="stylesheet" href="css/cart.css"> -->
     <link rel="stylesheet" href="css/tienda.css">
     <link rel="stylesheet" href="css/formulario.css">
+    <link rel="stylesheet" href="css/CRUD.css">
     <title>Sanus Vita</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/ico.png"">
 </head>
@@ -27,7 +28,7 @@
         <section> <!--  class="card">-->
 
             <div id="app"> <!--class="form-contacto" -->
-                <form @submit.prevent="obtenerSuplemento" id="form">                    
+                <form @submit.prevent="obtenerSuplemento" id="form">
                     <div class="form-consulta select-field">
                         <select v-model="codigo">
                             <option value="" disabled selected>Selecciona un código</option>
@@ -38,8 +39,9 @@
                     </div>
                     <span class="form-consulta button-container">
                         <button class="button-submit" type="submit">Modificar Suplemento</button>
-                        <button class="button-submit" v-if="mostrarDatosSuplemento == true" @click="mostrarDatosSuplemento=false">Cancelar</button>
-                    </span>                    
+                        <button class="button-submit" v-if="mostrarDatosSuplemento == true"
+                            @click="mostrarDatosSuplemento=false">Cancelar</button>
+                    </span>
                 </form>
 
                 <div v-if="mostrarDatosSuplemento">
@@ -72,9 +74,11 @@
                             <span class="bar"></span>
                             <label for="precioModificar">Precio:</label>
                         </div>
+                        <div class="btns">
+                            <button class="button-submit btn btn-save" type="submit">Guardar Cambios</button>
+                            <a class="button-submit btn" href="modificarCRUD.html">Cancelar</a>
+                        </div>
 
-                        <button type="submit">Guardar Cambios</button>
-                        <a href="modificarCRUD.html">Cancelar</a>
                     </form>
                 </div>
             </div>
