@@ -25,7 +25,7 @@
     <main>
 
         <section v-for="suplemento in suplementos" :key="suplemento.codigo">
-            <ul class="carrito" v-if="suplemento.cantidad>0">
+            <ul class="carrito">
                 <li class="cart-item">
                     <div class="info">
                         <h1>{{suplemento.nombre}}</h1>
@@ -34,7 +34,7 @@
 
                     </div>
                     <div class="price">
-                        <button @click="agregaralCarrito(suplemento)" class="mas">
+                        <button @click="agregaralCarrito(suplemento)" class="mas" v-if="suplemento.cantidad>0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="feather feather-plus">
@@ -42,14 +42,15 @@
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg>
                         </button>
-                        <button @click="restardelCarrito(suplemento)" class="menos">
+                        <button @click="restardelCarrito(suplemento)" class="menos" v-if="obtenerCantidadCarrito(suplemento.codigo)>0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="feather feather-minus">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg>
                         </button>
-                        <p>Cantidad en carrito: {{obtenerCantidadCarrito(suplemento.codigo)}} </p>
+                        <p v-if="suplemento.cantidad==0">*SIN STOCK</p>
+                        <p v-else="suplemento.cantidad>0">Cantidad en carrito: {{obtenerCantidadCarrito(suplemento.codigo)}} </p>
                         <div v-if="obtenerCantidadCarrito(suplemento.codigo)>0" class="precio">
                             <h2>${{sumaSuplementos(suplemento.codigo)}}</h2>
                             <span>Precio p/Uni. ${{suplemento.precio}}</span>
