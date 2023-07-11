@@ -194,3 +194,42 @@ textarea:focus~.highlight {
     display: none;
   }
 }
+
+.button-submit {
+  background-color: var(--clr-accent);
+  color: var(--clr-white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-submit:hover {
+  background-color: var(--clr-accent-hover);
+}
+
+.select-field select {
+  border: none;
+  border-bottom: 2px solid var(--clr-dark-blue);
+  background-color: transparent;
+  font-family: var(--ltr-main-font-f);
+  color: #333;
+  font-size: 18px;
+  padding: 10px 5px;
+  width: 100%;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 20px; /* Ajusta el tamaño de tu icono de flecha según sea necesario */
+}
+
+.select-field select:focus {
+  outline: none;
+  border-color: var(--clr-accent);
+}
+
+.button-container button {
+  margin-right: 10px; 
+}
