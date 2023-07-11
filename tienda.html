@@ -38,9 +38,10 @@
                     <div class="card-txt">
                         <h3>Suplemento</h3>
                         <h2>{{suplemento.nombre}}</h2>
-                        <p>{{suplemento.descripcion}}
-                            <br><br><br>Cantidad disponible: {{suplemento.cantidad}}
-                        </p>
+                        <p>{{suplemento.descripcion}}</p>
+                        
+                        <p v-if="suplemento.cantidad>0">Cantidad disponible: {{suplemento.cantidad}}</p>
+                        <p v-if="suplemento.cantidad==0">*SIN STOCK</p>
                         <h1>${{suplemento.precio}}</h1>
                     </div>
                 </div>

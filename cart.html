@@ -24,11 +24,8 @@
 
     <main>
 
-
-        <!-- FUNCIONA ENTRE MUCHAS "" PERO NO COMPILA EN TIEMPO REAL, HAY QUE REVISAR ESTO MEJOR Y MAS RELAJADO -->
-
         <section v-for="suplemento in suplementos" :key="suplemento.codigo">
-            <ul class="carrito">
+            <ul class="carrito" v-if="suplemento.cantidad>0">
                 <li class="cart-item">
                     <div class="info">
                         <h1>{{suplemento.nombre}}</h1>
@@ -77,7 +74,7 @@
     <script src="https://unpkg.com/vue@next"></script>
     <script>
         const URL = "https://evannj.pythonanywhere.com/"
-
+        
         const app = Vue.createApp({
             data() {
                 return {
@@ -97,7 +94,6 @@
                         .then(response => response.json())
                         .then(data => {
                             this.suplementos = data
-                            this.actualizarTotal()
                         })
                         .catch(error => {
                             console.error(URL + 'suplementos', error)
@@ -105,10 +101,16 @@
                         })
                 },
                 obtenerCarrito() {
-                    fetch(URL + 'carrito')
+                    fetch(URL + 'carrito', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },                        
+                    })
                         .then(response => response.json())
                         .then(data => {
                             this.carrito = data
+                            this.actualizarTotal()
                         })
                         .catch(error => {
                             console.error(URL + 'carrito', error)
@@ -117,9 +119,8 @@
                 },
                 actualizarTotal() {
                     this.total = 0
-                    this.carrito.forEach(item => {
-                        this.total += parseFloat(item.precio)
-                    });
+                    this.carrito.forEach(item => this.total += item.precio * item.cantidad)
+                    
                 },
                 agregaralCarrito(suplemento) {
                     fetch(URL + 'carrito', {
@@ -133,20 +134,9 @@
                         })
                     })
                         .then(response => response.json())
-                        .then(data => {
-                            // alert(data.message)
-                            const carritoItem = this.carrito.find(item => item.codigo === suplemento.codigo);
-
-                            if (carritoItem) {
-                                carritoItem.cantidad++; // Incrementa la cantidad
-                            } else {
-                                this.carrito.push(suplemento);
-                            }
-
-
-                            this.carrito.push(suplemento)
-                            this.obtenerSuplementos()
-                            this.obtenerCarrito()
+                        .then(data => {    
+                            this.obtenerSuplementos()     
+                            this.obtenerCarrito()                   
                             this.actualizarTotal()
                         })
                         .catch(error => {
@@ -167,13 +157,8 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            // alert(data.message)
-                            this.obtenerCarrito()
-                            const index = this.carrito.findIndex(item => item.codigo === suplemento.codigo)
-                            if (index !== -1) {
-                                this.carrito.splice(index, 1)
-                            }
                             this.obtenerSuplementos()
+                            this.obtenerCarrito()                                                        
                             this.actualizarTotal()
                         })
                         .catch(error => {
@@ -185,7 +170,7 @@
                     const carritoItem = this.carrito.find(item => item.codigo === codigo)
                     return carritoItem ? carritoItem.cantidad : 0
 
-                }
+                },                
             }
         })
         app.mount('body')
