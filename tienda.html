@@ -24,13 +24,24 @@
     <main>
         <section>
             <div class="wrapper">
-                <div class="card" v-for="suplemento in suplementos">                    
+                <h1>Echa un vistazo a nuestros productos de alta calidad</h1>
+                <p>
+                    Los suplementos deportivos tienen como objetivo aumentar la musculatura, perder peso o mejorar la resistencia. 
+                    Nuestros productos hechos guiados de las buenas prácticas recomendadas por la FDA para garantizar calidad y seguridad por sobre todas las cosas, 
+                    y a su vez son evaluados por el mejor laboratorio.
+                </p>
+            </div>
+        </section>
+        <section class="suples">         
+            <div class="wrapper">
+                <div class="card" v-for="suplemento in suplementos" :key="suplemento.codigo">                    
                     <div class="card-txt">
                         <h3>Suplemento</h3>
                         <h2>{{suplemento.nombre}}</h2>
-                        <p>{{suplemento.descripcion}}
-                            <br>Cantidad disponible: {{suplemento.cantidad}}
-                        </p>
+                        <p>{{suplemento.descripcion}}</p>
+                        
+                        <p v-if="suplemento.cantidad>0">Cantidad disponible: {{suplemento.cantidad}}</p>
+                        <p v-if="suplemento.cantidad==0">*SIN STOCK</p>
                         <h1>${{suplemento.precio}}</h1>
                     </div>
                 </div>
@@ -42,77 +53,8 @@
     </footer>
     <script defer src="js/darkMode.js"></script>
     <script defer src="js/header.js"></script>
-    <script src="js/index.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
-    <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    suplementos: []
-                }
-            },
-            methods: {
-                obtenerSuplementos() {
-                    const URL = "https://evannj.pythonanywhere.com/"
-
-                    fetch(URL + 'suplementos')
-                        .then(response => {
-                            if (response.ok) {
-                                return response.json()
-                            } else {
-                                throw new Error('Error al obtener los suplementos.')
-                            }
-                        })
-                        .then(data => {
-                            this.suplementos = data
-                        })
-                        .catch(error => {
-                            console.log('Error:', error)
-                            alert('Error al obtener los suplementos.')
-                        })
-                }
-            },
-            mounted() {
-                this.obtenerSuplementos()
-            }
-        })
-        app.mount('body')
-
-
-
-
-
-
-        // const URL = "https://evannj.pythonanywhere.com/"
-        // Realizamos la solicitud GET al servidor para obtener todos los productos
-        // fetch(URL + 'suplementos')
-        //     .then(function (response) {
-        //         if (response.ok) {
-        //             return response.json() // Parseamos la respuesta JSON
-        //         } else {
-        //             throw new Error('Error al obtener los suplementos.')
-        //         }
-        //     })
-        //     .then(function (data) {
-        //         // var tablaProductos =
-        //         //     document.getElementById('tablaProductos')
-        //         // Iteramos sobre los productos y agregamos filas a la tabla
-        //         data.forEach(function (producto) {
-        //             var fila = document.createElement('tr')
-        //             fila.innerHTML = '<td>' + producto.codigo + '</td>' +
-        //                 '<td>' + producto.descripcion + '</td>' +
-        //                 '<td align="right">' + producto.cantidad + '</td>' +
-        //                 '<td align="right">&nbsp; &nbsp;&nbsp; &nbsp;' +
-        //                 producto.precio + '</td>'
-        //             tablaProductos.appendChild(fila)
-        //         })
-        //     })
-        //     .catch(function (error) {
-        //         console.log('Error:', error)
-        //         alert('Error al obtener los productos.')
-        //     })
-
-    </script>
+    <script defer src="js/metodos.js"></script>    
+    <script src="js/index.js"></script>
     </body>
-
 </html>

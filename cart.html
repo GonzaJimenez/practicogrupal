@@ -21,24 +21,12 @@
 <body class=" dark-theme">
     <header class="" id="idheader">
     </header>
-    <!-- <div class="card" v-for="suplemento in suplementos">
-        <img src="img/calistenia-sentadillas.webp" alt="">
-        <div class="card-txt">
-            <h3>Suplementos</h3>
-            <h2></h2>
-            <p>Cantidad disponible: </p>
-            <h1></h1>                            
-        </div>
-    </div> -->
+
     <main>
 
-
-        <!-- FUNCIONA ENTRE MUCHAS "" PERO NO COMPILA EN TIEMPO REAL, HAY QUE REVISAR ESTO MEJOR Y MAS RELAJADO -->
-
-        <section>
-            <!-- v-if="estaEnCarrito(suplemento)" -->
-            <ul class="carrito">
-                <li class="cart-item" v-for="suplemento in suplementos" :key="suplemento.codigo">
+        <section v-for="suplemento in suplementos" :key="suplemento.codigo">
+            <ul class="carrito" v-if="suplemento.cantidad>0">
+                <li class="cart-item">
                     <div class="info">
                         <h1>{{suplemento.nombre}}</h1>
                         <p>{{suplemento.descripcion}}</p>
@@ -68,14 +56,14 @@
                         </div>
                     </div>
                 </li>
-                <section class="s-total">
-                    <div class="total">
-                        <h3>Total</h3>
-                        <h3>${{ totalCarrito }}</h3>
-                    </div>
-                    <button class="buy"><strong>Comprar</strong></button>
-                </section>
             </ul>
+        </section>
+        <section class="carrito">
+            <div class="total">
+                <h2>Total</h2>
+                <h3>${{total}}</h3>
+            </div>
+            <button class="buy"><strong>Comprar</strong></button>
         </section>
     </main>
 
@@ -86,18 +74,20 @@
     <script src="js/index.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
-        const URL = "https://evannj.pythonanywhere.com/";
+        const URL = "https://evannj.pythonanywhere.com/"
 
         const app = Vue.createApp({
             data() {
                 return {
                     suplementos: [],
-                    carrito: []
+                    carrito: [],
+                    total: 0,
                 }
             },
-            created() {
+            mounted() {
                 this.obtenerSuplementos()
                 this.obtenerCarrito()
+                this.actualizarTotal()
             },
             methods: {
                 sumarUnidadesDisponiblesCarrito() {
@@ -123,16 +113,32 @@
                     return this.carrito.some(item => item.codigo === suplemento.codigo);
                 },
                 obtenerCarrito() {
-                    fetch(URL + 'carrito')
+                    fetch(URL + 'carrito', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },                        
+                    })
                         .then(response => response.json())
                         .then(data => {
                             this.carrito = data
+                            this.actualizarTotal()
                         })
                         .catch(error => {
                             console.error(URL + 'carrito', error)
                             alert('Error al obtener el carrito.')
                         })
                         
+                },
+                actualizarTotal() {
+                    this.total = 0
+                    this.carrito.forEach(item => this.total += item.precio * item.cantidad)
+                    
+                },
+                actualizarTotal() {
+                    this.total = 0
+                    this.carrito.forEach(item => this.total += item.precio * item.cantidad)
+                    
                 },
                 agregaralCarrito(suplemento) {
                     fetch(URL + 'carrito', {
@@ -146,10 +152,10 @@
                         })
                     })
                         .then(response => response.json())
-                        .then(data => {
-                            alert(data.message)
-                            this.carrito.push(suplemento)
-                            this.obtenerSuplementos()
+                        .then(data => {    
+                            this.obtenerSuplementos()     
+                            this.obtenerCarrito()                   
+                            this.actualizarTotal()
                         })
                         .catch(error => {
                             console.error('Error al agregar el suplemento al carrito: ', error)
@@ -169,12 +175,9 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            alert(data.message)
-                            const index = this.carrito.findIndex(item => item.codigo === suplemento.codigo)
-                            if (index !== -1) {
-                                this.carrito.splice(index, 1)
-                            }
                             this.obtenerSuplementos()
+                            this.obtenerCarrito()                                                        
+                            this.actualizarTotal()
                         })
                         .catch(error => {
                             console.error('Error al restar el suplemento del carrito:', error)
@@ -193,22 +196,9 @@
                     //     }
                     // }
                     // return cantidad
-                },
-            },
-            computed: { //Este es para obtener la suma del total
-                totalCarrito() {
-                    let total = 0;
-                    for (const item of this.carrito) {
-                        const suplemento = this.suplementos.find(s => s.codigo === item.codigo);
-                        if (suplemento) {
-                            total += suplemento.precio * item.cantidad;
-                        }
-                    }
-                    return total;
                 }
-            },
+            }
         })
-
         app.mount('body')
 
     </script>
