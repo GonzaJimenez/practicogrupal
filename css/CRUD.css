@@ -26,7 +26,9 @@
     color: var(--clr-dark-blue);
     background-color: var(--clr-white);
 }
-
+label {
+    top: 0;
+}
 input:focus~label,
 input:valid~label {
   top: -30px;
