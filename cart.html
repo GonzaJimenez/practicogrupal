@@ -49,10 +49,13 @@
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg>
                         </button>
-                        <p>Cantidad: {{obtenerCantidadCarrito(suplemento.codigo)}} </p>
-                        <div class="precio">
-                            <h1>${{suplemento.precio * obtenerCantidadCarrito(suplemento.codigo)}}</h1>
-                            <!-- Multiplicamos para tener el precio final -->
+                        <p>Cantidad en carrito: {{obtenerCantidadCarrito(suplemento.codigo)}} </p>
+                        <div v-if="obtenerCantidadCarrito(suplemento.codigo)>0" class="precio">
+                            <h2>${{sumaSuplementos(suplemento.codigo)}}</h2>
+                            <span>Precio p/Uni. ${{suplemento.precio}}</span>
+                        </div>
+                        <div v-if="obtenerCantidadCarrito(suplemento.codigo)==0" class="precio">
+                            <h1>${{suplemento.precio}}</h1>
                         </div>
                     </div>
                 </li>
@@ -81,7 +84,7 @@
                 return {
                     suplementos: [],
                     carrito: [],
-                    total: 0,
+                    total: 0,                    
                 }
             },
             mounted() {
@@ -184,19 +187,16 @@
                             alert('Error al restar el suplemento del carrito')
                         })
                 },
-                obtenerCantidadCarrito(codigo) {
+                obtenerCantidadCarrito(codigo){
                     const carritoItem = this.carrito.find(item => item.codigo === codigo)
                     return carritoItem ? carritoItem.cantidad : 0
 
-
-                    // let cantidad = 0
-                    // for (let i=0; i < this.carrito.length; i++){
-                    //     if (this.carrito[i].codigo === codigo){
-                    //         cantidad += this.carrito[i].cantidad
-                    //     }
-                    // }
-                    // return cantidad
-                }
+                },
+                sumaSuplementos(codigo){
+                    const carritoItem = this.carrito.find(item => item.codigo === codigo)
+                    return carritoItem ? (carritoItem.precio * carritoItem.cantidad) : 0
+                   
+                }                
             }
         })
         app.mount('body')

@@ -19,25 +19,27 @@
     <title>Sanus Vita</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/ico.png"">
 </head>
-<body class="dark-theme">
+<body class=" dark-theme">
     <header class="" id="idheader"></header>
 
     <main>
         <h1>Modificar Productos del Inventario</h1>
         <section> <!--  class="card">-->
 
-            <div id="app">  <!--class="form-contacto" -->
-                <form @submit.prevent="obtenerSuplemento" id="form">
-                    <div class="form-consulta">
-                        <input type="text" v-model="codigo" required><br>
+            <div id="app"> <!--class="form-contacto" -->
+                <form @submit.prevent="obtenerSuplemento" id="form">                    
+                    <div class="form-consulta select-field">
+                        <select v-model="codigo">
+                            <option value="" disabled selected>Selecciona un código</option>
+                            <option v-for="codigo in codigosSuplementos" :value="codigo">{{ codigo }}</option>
+                        </select><br>
                         <span class="highlight"></span>
                         <span class="bar"></span>
-                        <label>Código:</label>
                     </div>
-                    <span class="form-consulta">
-                        <button type="submit">Modificar Suplemento</button> 
-                        <a href="index.html">Menu principal</a>
-                    </span>
+                    <span class="form-consulta button-container">
+                        <button class="button-submit" type="submit">Modificar Suplemento</button>
+                        <button class="button-submit" v-if="mostrarDatosSuplemento == true" @click="mostrarDatosSuplemento=false">Cancelar</button>
+                    </span>                    
                 </form>
 
                 <div v-if="mostrarDatosSuplemento">
@@ -99,7 +101,11 @@
                     descripcion: '',
                     cantidad: '',
                     precio: '',
+                    codigosSuplementos: []
                 }
+            },
+            mounted() {
+                this.obtenerlista()
             },
             methods: {
                 obtenerSuplemento() {
@@ -120,6 +126,17 @@
                         })
                         .catch(error => {
                             alert('Error al obtener los datos del suplemento.')
+                        })
+                },
+                obtenerlista() {
+                    fetch(URL + 'suplementos')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.codigosSuplementos = data.map(suplemento => suplemento.codigo)
+
+                        })
+                        .catch(error => {
+                            alert('Error al obtener la lista de codigos.')
                         })
                 },
                 guardarCambios() {
